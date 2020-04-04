@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/joinmeus/public_html/Corona/
+    - /bin/rm -rf $DEPLOYPATH
+    - /bin/mkdir $DEPLOYPATH
+    - /bin/cp -r .* $DEPLOYPATH
