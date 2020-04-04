@@ -175,7 +175,7 @@ nav {
       color: black; }
   #index-container > :last-child .contribution-box {
     margin: 0rem 1rem;
-    font-size: 2rem;
+    font-size: 1.25rem;
     height: calc(100% - 3rem * 2 - 2.6rem);
     overflow: scroll; }
     #index-container > :last-child .contribution-box .contribution {
