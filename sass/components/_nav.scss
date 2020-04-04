@@ -73,3 +73,18 @@ nav {
 
 
 }
+
+
+.header-nav {
+    background-color: greenyellow;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $height-nav-index;
+
+    .pagination {
+        margin-bottom: 0;
+    }
+
+}

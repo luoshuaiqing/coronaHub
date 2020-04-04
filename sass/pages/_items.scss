@@ -4,25 +4,13 @@
 
 #items-container {
     padding: 0 3rem;
-    height: calc(100vh - 2 * #{$height-nav-index});
+    height: calc(100vh -  #{$height-nav-index});
     
  
-    .items-nav {
-        background-color: greenyellow;
-        padding: 1rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: $height-nav-index;
-
-        .pagination {
-            margin-bottom: 0;
-        }
-
-    }
+    
 
     .items-box-container {
-        height: calc(100vh - 3 * #{$height-nav-index});
+        height: calc(100vh - 2 * #{$height-nav-index});
         display: flex;
         flex-wrap: wrap;
         overflow: hidden;
