@@ -1,0 +1,120 @@
+#index-container {
+    padding: 0 3rem;
+    display: flex;
+    height: calc(100vh - 2 * #{$height-nav-index});
+    flex-wrap: wrap;
+
+    > div {
+        position: relative;
+        height: 100%;
+    }
+
+    .header {
+        margin: 3rem 0;
+        text-align: center;
+        line-height: 1;
+    }
+
+
+    .box--1 {
+        @include absCenter;
+        background-color: yellowgreen;
+        height: 100%;
+        width: 100%;
+        
+        text-align: center;
+        
+        display: flex;
+        flex-direction: column;
+
+
+        .img-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: calc(100% - 3rem * 2 - 2.6rem);
+            background-color: orangered;
+            flex: 1;
+            
+
+            svg {
+                width: 5rem;
+                height: 5rem;
+                fill: white;
+
+                &:first-child {
+                    margin-left: 1rem;
+                    margin-right: 2rem;
+                }
+
+                &:last-child {
+                    margin-left: 2rem;
+                    margin-right: 1rem;
+                }
+            }
+
+            img {
+                max-width: calc(100% - 16rem);
+                max-height: 100%;
+                min-height: 50%;
+            }
+
+        }
+    }
+
+    
+    > :nth-child(2) {
+        $font-content: 1.25rem;
+
+        .posts-box {
+            margin: 0rem 1rem;
+            font-size: $font-content;
+            height: calc(100% - 3rem * 2 - 2.6rem);
+            overflow: scroll;
+
+            .post:not(:first-child) {
+                margin-top: 1.5rem;
+            }
+
+            a {
+                color: black;
+            }
+        }
+
+    }
+
+
+ 
+    >:last-child {
+        
+        .contribution-box {
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: center;
+            
+            
+            margin: 0rem 1rem;
+            font-size: 2rem;
+            height: calc(100% - 3rem * 2 - 2.6rem);
+            overflow: scroll;
+
+            .contribution {
+                
+                text-align: center;
+
+                span:first-child {
+                    margin-right: 2rem;
+                }
+                
+            }
+
+            .contribution:not(:first-child) {
+                margin-top: 2rem;
+            }
+        }
+
+
+
+
+    }
+}

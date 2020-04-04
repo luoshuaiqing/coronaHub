@@ -1,0 +1,232 @@
+/*
+0 - 600px: phone
+600 - 900px: tablet portrait
+900 - 1200px: tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px +: big desktop
+*/
+/*
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+*/
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Work+Sans:wght@400;700&display=swap");
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (max-width: 37.5em) {
+    html {
+      font-size: 30%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  font-family: 'Work Sans', sans-serif !important; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400 !important;
+  font-family: 'Crimson Text', serif !important; }
+
+h1 {
+  font-size: 4.8rem !important; }
+
+h2 {
+  font-size: 4rem !important; }
+
+h3 {
+  font-size: 3.2rem !important; }
+
+h4 {
+  font-size: 2.6rem !important; }
+
+h5 {
+  font-size: 2.2rem !important; }
+
+h6 {
+  font-size: 2rem !important; }
+
+nav {
+  display: flex !important;
+  padding: 1rem 3rem;
+  align-items: center;
+  height: 6rem;
+  margin-bottom: 0; }
+
+._nav__box--left {
+  margin-right: auto; }
+
+._nav__box--right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  ._nav__box--right ._nav__login-box {
+    margin-right: 3rem; }
+  ._nav__box--right ._nav__user-box {
+    margin-right: 3rem;
+    display: flex;
+    align-items: center; }
+    ._nav__box--right ._nav__user-box img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      margin-right: 1rem;
+      transition: transform .3s; }
+      ._nav__box--right ._nav__user-box img:hover {
+        transform: scale(1.2);
+        cursor: pointer; }
+
+.nav-secondary {
+  justify-content: space-between;
+  background-color: orangered; }
+  .nav-secondary > .header-box {
+    height: 100%;
+    width: calc(6rem - 1rem * 2);
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+#index-container {
+  padding: 0 3rem;
+  display: flex;
+  height: calc(100vh - 2 * 6rem);
+  flex-wrap: wrap; }
+  #index-container > div {
+    position: relative;
+    height: 100%; }
+  #index-container .header {
+    margin: 3rem 0;
+    text-align: center;
+    line-height: 1; }
+  #index-container .box--1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: yellowgreen;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column; }
+    #index-container .box--1 .img-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: calc(100% - 3rem * 2 - 2.6rem);
+      background-color: orangered;
+      flex: 1; }
+      #index-container .box--1 .img-box svg {
+        width: 5rem;
+        height: 5rem;
+        fill: white; }
+        #index-container .box--1 .img-box svg:first-child {
+          margin-left: 1rem;
+          margin-right: 2rem; }
+        #index-container .box--1 .img-box svg:last-child {
+          margin-left: 2rem;
+          margin-right: 1rem; }
+      #index-container .box--1 .img-box img {
+        max-width: calc(100% - 16rem);
+        max-height: 100%;
+        min-height: 50%; }
+  #index-container > :nth-child(2) .posts-box {
+    margin: 0rem 1rem;
+    font-size: 1.25rem;
+    height: calc(100% - 3rem * 2 - 2.6rem);
+    overflow: scroll; }
+    #index-container > :nth-child(2) .posts-box .post:not(:first-child) {
+      margin-top: 1.5rem; }
+    #index-container > :nth-child(2) .posts-box a {
+      color: black; }
+  #index-container > :last-child .contribution-box {
+    margin: 0rem 1rem;
+    font-size: 2rem;
+    height: calc(100% - 3rem * 2 - 2.6rem);
+    overflow: scroll; }
+    #index-container > :last-child .contribution-box .contribution {
+      text-align: center; }
+      #index-container > :last-child .contribution-box .contribution span:first-child {
+        margin-right: 2rem; }
+    #index-container > :last-child .contribution-box .contribution:not(:first-child) {
+      margin-top: 2rem; }
+
+#body-items {
+  min-height: 700px; }
+
+#items-container {
+  padding: 0 3rem;
+  height: calc(100vh - 2 * 6rem); }
+  #items-container .items-nav {
+    background-color: greenyellow;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem; }
+    #items-container .items-nav .pagination {
+      margin-bottom: 0; }
+  #items-container .items-box-container {
+    height: calc(100vh - 3 * 6rem);
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden; }
+    #items-container .items-box-container > * {
+      height: 50%; }
+      #items-container .items-box-container > * .item-box--outer {
+        padding: 1rem 2rem;
+        width: 100%;
+        height: 100%; }
+        #items-container .items-box-container > * .item-box--outer .item-box {
+          border: 1px solid black;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column; }
+          #items-container .items-box-container > * .item-box--outer .item-box .img-box {
+            height: calc(100% - 4px - 2 * (1.5 * 1.2rem + .25rem * 2) - 4rem);
+            background-color: red; }
+            #items-container .items-box-container > * .item-box--outer .item-box .img-box img {
+              width: 100%;
+              height: 100%;
+              padding: 2rem 1rem; }
+          #items-container .items-box-container > * .item-box--outer .item-box > span {
+            vertical-align: middle;
+            padding: .25rem 1rem;
+            font-size: 1.2rem;
+            width: 100%;
+            border-top: 1px solid black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            -ms-overflow-style: none; }
+            #items-container .items-box-container > * .item-box--outer .item-box > span::-webkit-scrollbar {
+              display: none; }
+          #items-container .items-box-container > * .item-box--outer .item-box > span:first-of-type {
+            height: 4rem;
+            white-space: normal;
+            overflow: scroll; }

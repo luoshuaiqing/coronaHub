@@ -4,4 +4,45 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+    font-family: 'Work Sans', sans-serif !important;
+	
 }
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400 !important;
+    font-family: 'Crimson Text', serif !important;
+}
+
+h1 {
+	font-size: 4.8rem !important;
+}
+
+// Page or section titles
+h2 {
+	font-size: 4rem !important;
+}
+
+// Profile, popover titles
+h3 {
+	font-size: 3.2rem !important;
+}
+
+// Own profile subnav
+h4 {
+	font-size: 2.6rem !important;
+}
+
+// Subheads, buttons, section info
+h5 {
+	font-size: 2.2rem !important;
+}
+
+// Names on Dashboard posts, messages, 
+h6 {
+	font-size: 2rem !important;	
+}
+
+
+
+
