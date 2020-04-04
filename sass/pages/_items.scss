@@ -1,6 +1,4 @@
-#body-items { 
-    min-height: 700px;
-}
+
 
 #items-container {
     padding: 0 3rem;
@@ -11,6 +9,7 @@
 
     .items-box-container {
         height: calc(100vh - 2 * #{$height-nav-index});
+        min-height: 500px;
         display: flex;
         flex-wrap: wrap;
         overflow: hidden;

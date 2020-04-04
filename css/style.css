@@ -185,14 +185,12 @@ nav {
     #index-container > :last-child .contribution-box .contribution:not(:first-child) {
       margin-top: 2rem; }
 
-#body-items {
-  min-height: 700px; }
-
 #items-container {
   padding: 0 3rem;
   height: calc(100vh -  6rem); }
   #items-container .items-box-container {
     height: calc(100vh - 2 * 6rem);
+    min-height: 500px;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden; }
