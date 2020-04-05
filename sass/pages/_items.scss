@@ -2,13 +2,13 @@
 
 #items-container {
     padding: 0 3rem;
-    height: calc(100vh -  #{$height-nav-index});
+    height: calc(100vh -  2 *#{$height-nav-index});
     
  
     
 
     .items-box-container {
-        height: calc(100vh - 2 * #{$height-nav-index});
+        height: calc(100vh - 3 * #{$height-nav-index});
         min-height: 500px;
         display: flex;
         flex-wrap: wrap;

@@ -266,9 +266,9 @@ nav {
 
 #items-container {
   padding: 0 3rem;
-  height: calc(100vh -  6rem); }
+  height: calc(100vh -  2 *6rem); }
   #items-container .items-box-container {
-    height: calc(100vh - 2 * 6rem);
+    height: calc(100vh - 3 * 6rem);
     min-height: 500px;
     display: flex;
     flex-wrap: wrap;
