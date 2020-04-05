@@ -133,12 +133,45 @@ nav {
     background-color: greenyellow;
     padding: 1rem 0;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     height: $height-nav-index;
 
+
+    .title-box {
+        flex: 1;
+        margin-bottom: 0;
+        
+    }
+
+    .sorting-box {
+        width: unset;
+        margin-right: 5rem;
+
+        select {
+            background-color: white;
+            padding-right: 4rem;
+            height: unset;
+            line-height: 1.8;
+
+            option {
+                display: flex;
+                align-items: center;
+                
+            }
+        }
+    }
+
     .pagination {
         margin-bottom: 0;
+
+        .active {
+            background-color: $color-primary !important;
+
+            * {
+                background-color: inherit !important;
+            }
+        }
     }
 
 }

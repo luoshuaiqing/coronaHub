@@ -1,6 +1,6 @@
 #posts-container {
     padding: 0 3rem;
-    height: calc(100vh - #{$height-nav-index});
+    height: calc(100vh - 2 * #{$height-nav-index});
 
     
 
@@ -8,7 +8,7 @@
     .posts-table {
         // background-color: olivedrab;
         width: 100%;
-        height: calc(100vh - 2 * #{$height-nav-index});
+        height: calc(100vh - 3 * #{$height-nav-index});
         padding: 0 1.5rem 2rem 1.5rem;
 
         .posts-table__header {
@@ -47,9 +47,10 @@
 
 
         .posts-table__content {
-            height: calc(100% - #{$height-nav-index});
+            height: calc(100% - 2 * #{$height-nav-index});
             border: 1px solid black;
             overflow: hidden;
+            border-bottom: none;
 
             .posts-table__row {
                 // I will show 10 records by default per page
