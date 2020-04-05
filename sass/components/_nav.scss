@@ -97,6 +97,15 @@ nav {
                 }
             }
 
+            a {
+                text-decoration: none;
+                color: black;
+
+                &:hover {
+                    border: none;
+                }
+            }
+
             
         }
 

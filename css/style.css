@@ -140,6 +140,11 @@ nav {
         background-color: #17a2b8; }
         .nav-secondary > .header-box h6:hover + img {
           transform: translateX(calc(-100% - 1rem)) scale(1.2); }
+      .nav-secondary > .header-box h6 a {
+        text-decoration: none;
+        color: black; }
+        .nav-secondary > .header-box h6 a:hover {
+          border: none; }
     .nav-secondary > .header-box img {
       width: calc(6rem - 1rem * 2);
       height: 100%;
