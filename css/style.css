@@ -183,7 +183,8 @@ nav {
   display: flex;
   height: calc(100vh - 2 * 6rem);
   flex-wrap: wrap;
-  padding-bottom: 3rem; }
+  padding-bottom: 3rem;
+  min-height: 500px; }
   #index-container > div {
     position: relative;
     height: 100%; }
@@ -214,6 +215,10 @@ nav {
         position: relative;
         left: 0;
         transition: left .1s, fill .3s, transform .3s; }
+        @media only screen and (max-width: 37.5em) {
+          #index-container .box--1 .img-box svg {
+            width: 10rem;
+            height: 7rem; } }
         #index-container .box--1 .img-box svg:first-child {
           margin-left: 1rem;
           margin-right: 2rem; }
@@ -233,6 +238,9 @@ nav {
         max-width: calc(100% - 16rem);
         max-height: 100%;
         min-height: 50%; }
+        @media only screen and (max-width: 37.5em) {
+          #index-container .box--1 .img-box img {
+            max-height: 40rem; } }
     #index-container .box--1 .content-box {
       display: flex;
       align-items: flex-start;
@@ -242,7 +250,8 @@ nav {
       padding-bottom: 0; }
       #index-container .box--1 .content-box > div {
         margin: 1rem 0;
-        margin-left: 1rem; }
+        margin-left: 1rem;
+        text-align: left; }
         #index-container .box--1 .content-box > div:first-child {
           margin-top: 2rem; }
         #index-container .box--1 .content-box > div:last-child {
