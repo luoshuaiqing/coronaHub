@@ -3,8 +3,9 @@
     display: flex;
     height: calc(100vh - 2 * #{$height-nav-index});
     flex-wrap: wrap;
+    padding-bottom: 3rem;
 
-    > div {
+    >div {
         position: relative;
         height: 100%;
     }
@@ -18,12 +19,12 @@
 
     .box--1 {
         @include absCenter;
-        background-color: yellowgreen;
+        // background-color: yellowgreen;
         height: 100%;
         width: 100%;
-        
+
         text-align: center;
-        
+
         display: flex;
         flex-direction: column;
 
@@ -33,14 +34,20 @@
             justify-content: space-between;
             align-items: center;
             height: calc(100% - 3rem * 2 - 2.6rem);
-            background-color: orangered;
+            // background-color: orangered;
             flex: 1;
-            
+
 
             svg {
                 width: 5rem;
-                height: 5rem;
+                height: 3.5rem;
                 fill: white;
+                position: relative;
+                left: 0;
+                transition: left .1s, fill .3s, transform .3s;
+
+
+
 
                 &:first-child {
                     margin-left: 1rem;
@@ -51,6 +58,22 @@
                     margin-left: 2rem;
                     margin-right: 1rem;
                 }
+
+                &:hover {
+                    cursor: pointer;
+                    fill: $color-primary;
+                    transform: translateX(1rem) scaleX(1.5);
+                    left: -1rem;
+
+                    use {
+                        stroke: $color-primary;
+                    }
+                }
+
+                use {
+                    stroke: black;
+                    // transition: all .1s;
+                }
             }
 
             img {
@@ -58,11 +81,44 @@
                 max-height: 100%;
                 min-height: 50%;
             }
+        }
 
+
+        .content-box {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            padding: 3rem 3rem;
+            padding-bottom: 0;
+
+            >div {
+                margin: 1rem 0;
+                margin-left: 1rem;
+
+                &:first-child {
+                    margin-top: 2rem;
+                }
+
+                &:last-child {
+                    margin-bottom: 2rem;
+                }
+            }
+
+            span {
+                display: inline-block;
+                // font-size: 1.25rem;
+                font-size: 1.5rem;
+            }
+
+            &__header {
+                margin-right: .5rem;
+            }
         }
     }
 
     $font-content: 1.25rem;
+
     > :nth-child(2) {
 
         .posts-box {
@@ -77,30 +133,44 @@
 
             a {
                 color: black;
+                font-size: 2.2rem !important;
             }
+
+            li::before {
+                font-size: 2.2rem;
+                color: red;
+                font-weight: bold;
+            }
+
+            .title {
+                display: inline-block;
+            }
+
+
         }
+
+
 
     }
 
 
- 
+
     >:last-child {
-        
+
         .contribution-box {
-            
+
             margin: 0rem 1rem;
             font-size: $font-content;
             height: calc(100% - 3rem * 2 - 2.6rem);
             overflow: scroll;
 
             .contribution {
-                
                 text-align: center;
-
+                font-size: 1.8rem;
                 span:first-child {
                     margin-right: 2rem;
                 }
-                
+
             }
 
             .contribution:not(:first-child) {

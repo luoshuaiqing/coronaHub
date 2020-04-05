@@ -7,8 +7,6 @@ nav {
 }
 
 ._nav {
-    
-
 
     &__box--left {
         margin-right: auto;
@@ -22,6 +20,20 @@ nav {
 
         ._nav__login-box {
             margin-right: 3rem;
+
+            div {
+                font-size: 1.25rem !important;
+                margin-bottom: 0 !important;
+                line-height: 1.5;
+                padding: .5rem 1rem;
+                background-color: $color-primary;
+                border: 1px solid $color-primary;
+                border-radius: .3rem;
+                color: white !important;
+                a {
+                    color: inherit;
+                }
+            }
         }
 
         ._nav__upload-box {
@@ -57,16 +69,49 @@ nav {
 
     > .header-box {
         height: 100%;
-        width: calc(#{$height-nav-index} - 1rem * 2);
-        border-radius: 50%;
-        background-color: white;
+
+        // background-color: white;
         display: flex;
-        justify-content: center;
+        
         align-items: center;
 
-        .content {
+        h6 {
+            margin-bottom: 0 !important;
+            
+            width: calc(4rem + 1rem);
+            
+            
+            height: $height-nav-index;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 .5rem;
+
+            transform: translateX(calc(100%));
+            &:hover {
+                cursor: pointer;
+                background-color: $color-primary;
+
+                + img {
+                    transform: translateX(calc(-100% - 1rem)) scale(1.2);
+                }
+            }
+
             
         }
+
+        img {
+            // the width of the image should alwasy be the same with its height
+            width: calc(#{$height-nav-index} - 1rem * 2);
+            height: 100%;
+            transition: all .5s;
+
+            transform: translateX(calc(-100% - 1rem));
+        }
+
+
+
+        
         
     }
 

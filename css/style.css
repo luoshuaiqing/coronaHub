@@ -68,6 +68,16 @@ h5 {
 h6 {
   font-size: 2rem !important; }
 
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter; }
+
+ol li {
+  counter-increment: my-awesome-counter; }
+
+ol li::before {
+  content: counter(my-awesome-counter) ". "; }
+
 nav {
   display: flex !important;
   padding: 1rem 3rem;
@@ -84,6 +94,17 @@ nav {
   align-items: center; }
   ._nav__box--right ._nav__login-box {
     margin-right: 3rem; }
+    ._nav__box--right ._nav__login-box div {
+      font-size: 1.25rem !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5;
+      padding: .5rem 1rem;
+      background-color: #17a2b8;
+      border: 1px solid #17a2b8;
+      border-radius: .3rem;
+      color: white !important; }
+      ._nav__box--right ._nav__login-box div a {
+        color: inherit; }
   ._nav__box--right ._nav__user-box {
     margin-right: 3rem;
     display: flex;
@@ -103,12 +124,27 @@ nav {
   background-color: orangered; }
   .nav-secondary > .header-box {
     height: 100%;
-    width: calc(6rem - 1rem * 2);
-    border-radius: 50%;
-    background-color: white;
     display: flex;
-    justify-content: center;
     align-items: center; }
+    .nav-secondary > .header-box h6 {
+      margin-bottom: 0 !important;
+      width: calc(4rem + 1rem);
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 .5rem;
+      transform: translateX(calc(100%)); }
+      .nav-secondary > .header-box h6:hover {
+        cursor: pointer;
+        background-color: #17a2b8; }
+        .nav-secondary > .header-box h6:hover + img {
+          transform: translateX(calc(-100% - 1rem)) scale(1.2); }
+    .nav-secondary > .header-box img {
+      width: calc(6rem - 1rem * 2);
+      height: 100%;
+      transition: all .5s;
+      transform: translateX(calc(-100% - 1rem)); }
 
 .header-nav {
   background-color: greenyellow;
@@ -124,7 +160,8 @@ nav {
   padding: 0 3rem;
   display: flex;
   height: calc(100vh - 2 * 6rem);
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  padding-bottom: 3rem; }
   #index-container > div {
     position: relative;
     height: 100%; }
@@ -137,7 +174,6 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: yellowgreen;
     height: 100%;
     width: 100%;
     text-align: center;
@@ -148,22 +184,52 @@ nav {
       justify-content: space-between;
       align-items: center;
       height: calc(100% - 3rem * 2 - 2.6rem);
-      background-color: orangered;
       flex: 1; }
       #index-container .box--1 .img-box svg {
         width: 5rem;
-        height: 5rem;
-        fill: white; }
+        height: 3.5rem;
+        fill: white;
+        position: relative;
+        left: 0;
+        transition: left .1s, fill .3s, transform .3s; }
         #index-container .box--1 .img-box svg:first-child {
           margin-left: 1rem;
           margin-right: 2rem; }
         #index-container .box--1 .img-box svg:last-child {
           margin-left: 2rem;
           margin-right: 1rem; }
+        #index-container .box--1 .img-box svg:hover {
+          cursor: pointer;
+          fill: #17a2b8;
+          transform: translateX(1rem) scaleX(1.5);
+          left: -1rem; }
+          #index-container .box--1 .img-box svg:hover use {
+            stroke: #17a2b8; }
+        #index-container .box--1 .img-box svg use {
+          stroke: black; }
       #index-container .box--1 .img-box img {
         max-width: calc(100% - 16rem);
         max-height: 100%;
         min-height: 50%; }
+    #index-container .box--1 .content-box {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 3rem 3rem;
+      padding-bottom: 0; }
+      #index-container .box--1 .content-box > div {
+        margin: 1rem 0;
+        margin-left: 1rem; }
+        #index-container .box--1 .content-box > div:first-child {
+          margin-top: 2rem; }
+        #index-container .box--1 .content-box > div:last-child {
+          margin-bottom: 2rem; }
+      #index-container .box--1 .content-box span {
+        display: inline-block;
+        font-size: 1.5rem; }
+      #index-container .box--1 .content-box__header {
+        margin-right: .5rem; }
   #index-container > :nth-child(2) .posts-box {
     margin: 0rem 1rem;
     font-size: 1.25rem;
@@ -172,14 +238,22 @@ nav {
     #index-container > :nth-child(2) .posts-box .post:not(:first-child) {
       margin-top: 1.5rem; }
     #index-container > :nth-child(2) .posts-box a {
-      color: black; }
+      color: black;
+      font-size: 2.2rem !important; }
+    #index-container > :nth-child(2) .posts-box li::before {
+      font-size: 2.2rem;
+      color: red;
+      font-weight: bold; }
+    #index-container > :nth-child(2) .posts-box .title {
+      display: inline-block; }
   #index-container > :last-child .contribution-box {
     margin: 0rem 1rem;
     font-size: 1.25rem;
     height: calc(100% - 3rem * 2 - 2.6rem);
     overflow: scroll; }
     #index-container > :last-child .contribution-box .contribution {
-      text-align: center; }
+      text-align: center;
+      font-size: 1.8rem; }
       #index-container > :last-child .contribution-box .contribution span:first-child {
         margin-right: 2rem; }
     #index-container > :last-child .contribution-box .contribution:not(:first-child) {
