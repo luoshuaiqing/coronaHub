@@ -389,15 +389,9 @@ nav {
       justify-content: space-between;
       height: 6rem; }
       #posts-container .posts-table .posts-table__header .post-button-container {
-        flex: 1;
-        position: relative; }
+        flex: 1; }
         #posts-container .posts-table .posts-table__header .post-button-container a {
           font-size: 2rem; }
-        #posts-container .posts-table .posts-table__header .post-button-container h6 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%); }
     #posts-container .posts-table .post-info-container {
       display: flex;
       flex: 0 0 40%;
@@ -413,6 +407,8 @@ nav {
       border: 1px solid black;
       overflow: hidden;
       border-bottom: none; }
+      #posts-container .posts-table .posts-table__content .top {
+        background-color: rgba(128, 128, 128, 0.3); }
       #posts-container .posts-table .posts-table__content .posts-table__row {
         height: calc(100% / 8);
         width: 100%;

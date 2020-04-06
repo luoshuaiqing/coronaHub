@@ -21,14 +21,10 @@
 
             .post-button-container {
                 flex: 1;
-                position: relative;
                 a {
                     font-size: 2rem;
                 }
 
-                h6 {
-                    @include absCenter;
-                }
             }
 
 
@@ -54,6 +50,10 @@
             border: 1px solid black;
             overflow: hidden;
             border-bottom: none;
+
+            .top {
+                background-color: rgba(grey, .3);
+            }
 
             .posts-table__row {
                 // I will show 8 records by default per page
