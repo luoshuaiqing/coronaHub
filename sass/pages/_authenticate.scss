@@ -13,6 +13,9 @@
     min-height: 500px;
 }
 
+
+$border-bottom-size: .3rem;
+
 .form-authenticate {
     @include absCenter;
     width: 30%;
@@ -72,7 +75,7 @@
 
     .my-input-group {
         $font-size: 1.5rem;
-        $border-bottom-size: .3rem;
+        
 
         position: relative;
         width: 75%;
@@ -139,6 +142,8 @@
         }
 
 
+        
+
 
     }
 
@@ -196,9 +201,7 @@
             color: rgba($color-primary, 1);
 
             span {
-                
-                
-
+    
                 &:hover {
                     border-bottom: 1px solid currentColor;
                     
@@ -208,4 +211,25 @@
         }
     }
 
+}
+
+
+
+.email-box {
+    $email-width: 7rem;
+    
+    input {
+        // width: 50% !important;
+        // margin-right: 30rem !important;
+        width: calc(100% - #{$email-width} - .5rem) !important;
+    }
+
+
+    .btn-send-code {
+        position: absolute;
+        top: $border-bottom-size;
+        right: 0;
+        width: $email-width;
+        align-self: stretch;
+    }
 }

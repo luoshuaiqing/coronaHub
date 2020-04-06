@@ -176,16 +176,14 @@ nav {
 
     .sorting-box {
         width: unset;
-        
 
         select {
-            background-color: white;
             padding-right: 4rem;
             height: unset;
             line-height: 1.8;
 
             box-shadow: none !important;
-            border-color: transparent;
+            
 
             option {
                 display: flex;

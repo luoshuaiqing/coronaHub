@@ -192,12 +192,10 @@ nav {
   .header-nav .sorting-box {
     width: unset; }
     .header-nav .sorting-box select {
-      background-color: white;
       padding-right: 4rem;
       height: unset;
       line-height: 1.8;
-      box-shadow: none !important;
-      border-color: transparent; }
+      box-shadow: none !important; }
       .header-nav .sorting-box select option {
         display: flex;
         align-items: center; }
@@ -657,3 +655,13 @@ nav {
       color: #17a2b8; }
       .form-authenticate .form-button-link a span:hover {
         border-bottom: 1px solid currentColor; }
+
+.email-box input {
+  width: calc(100% - 7rem - .5rem) !important; }
+
+.email-box .btn-send-code {
+  position: absolute;
+  top: 0.3rem;
+  right: 0;
+  width: 7rem;
+  align-self: stretch; }
