@@ -138,21 +138,60 @@ nav {
     height: $height-nav-index;
 
 
+    > :not(:first-child) {
+        margin-left: 2rem;
+
+        @include respond(phone) {
+            font-size: 7px;
+        }
+    }
+
     .title-box {
         flex: 1;
         margin-bottom: 0;
         
     }
 
+
+    .search-box {
+        display: flex;
+        align-items: center;
+
+        label {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            margin-right: .5rem;
+        }
+
+        .search-input {
+            outline: none;
+            padding: .25rem .5rem;
+            font-size: 1.25rem;
+            width: 8rem;
+
+            transition: all .3s;
+    
+            &:focus {
+                width: 12rem;
+            }
+            
+    
+        }
+    }
+    
+
     .sorting-box {
         width: unset;
-        margin-right: 5rem;
+        
 
         select {
             background-color: white;
             padding-right: 4rem;
             height: unset;
             line-height: 1.8;
+
+            box-shadow: none !important;
+            border-color: transparent;
 
             option {
                 display: flex;
@@ -162,16 +201,33 @@ nav {
         }
     }
 
-    .pagination {
-        margin-bottom: 0;
 
-        .active {
-            background-color: $color-primary !important;
+    .confirm-button {
+        font-size: 1.25rem;
+    }
 
-            * {
-                background-color: inherit !important;
+
+    .pagination-box {
+        margin-left: 5rem;
+
+        @include respond(phone) {
+            margin-left: 3rem;
+        }
+
+        .pagination {
+            margin-bottom: 0;
+    
+            
+    
+            .active {
+                background-color: $color-primary !important;
+    
+                * {
+                    background-color: inherit !important;
+                }
             }
         }
     }
+    
 
 }

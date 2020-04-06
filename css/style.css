@@ -157,26 +157,54 @@ nav {
   display: flex;
   align-items: center;
   height: 6rem; }
+  .header-nav > :not(:first-child) {
+    margin-left: 2rem; }
+    @media only screen and (max-width: 37.5em) {
+      .header-nav > :not(:first-child) {
+        font-size: 7px; } }
   .header-nav .title-box {
     flex: 1;
     margin-bottom: 0; }
+  .header-nav .search-box {
+    display: flex;
+    align-items: center; }
+    .header-nav .search-box label {
+      font-size: 1.25rem;
+      margin-bottom: 0;
+      margin-right: .5rem; }
+    .header-nav .search-box .search-input {
+      outline: none;
+      padding: .25rem .5rem;
+      font-size: 1.25rem;
+      width: 8rem;
+      transition: all .3s; }
+      .header-nav .search-box .search-input:focus {
+        width: 12rem; }
   .header-nav .sorting-box {
-    width: unset;
-    margin-right: 5rem; }
+    width: unset; }
     .header-nav .sorting-box select {
       background-color: white;
       padding-right: 4rem;
       height: unset;
-      line-height: 1.8; }
+      line-height: 1.8;
+      box-shadow: none !important;
+      border-color: transparent; }
       .header-nav .sorting-box select option {
         display: flex;
         align-items: center; }
-  .header-nav .pagination {
-    margin-bottom: 0; }
-    .header-nav .pagination .active {
-      background-color: #17a2b8 !important; }
-      .header-nav .pagination .active * {
-        background-color: inherit !important; }
+  .header-nav .confirm-button {
+    font-size: 1.25rem; }
+  .header-nav .pagination-box {
+    margin-left: 5rem; }
+    @media only screen and (max-width: 37.5em) {
+      .header-nav .pagination-box {
+        margin-left: 3rem; } }
+    .header-nav .pagination-box .pagination {
+      margin-bottom: 0; }
+      .header-nav .pagination-box .pagination .active {
+        background-color: #17a2b8 !important; }
+        .header-nav .pagination-box .pagination .active * {
+          background-color: inherit !important; }
 
 #index-container {
   padding: 0 3rem;
@@ -307,6 +335,7 @@ nav {
         height: 100%; }
         #items-container .items-box-container > * .item-box--outer .item-box {
           border: 1px solid black;
+          border-radius: 1rem;
           width: 100%;
           height: 100%;
           display: flex;
@@ -360,9 +389,15 @@ nav {
       justify-content: space-between;
       height: 6rem; }
       #posts-container .posts-table .posts-table__header .post-button-container {
-        flex: 1; }
+        flex: 1;
+        position: relative; }
         #posts-container .posts-table .posts-table__header .post-button-container a {
           font-size: 2rem; }
+        #posts-container .posts-table .posts-table__header .post-button-container h6 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); }
     #posts-container .posts-table .post-info-container {
       display: flex;
       flex: 0 0 40%;
@@ -379,7 +414,7 @@ nav {
       overflow: hidden;
       border-bottom: none; }
       #posts-container .posts-table .posts-table__content .posts-table__row {
-        height: calc(100% / 10);
+        height: calc(100% / 8);
         width: 100%;
         font-size: 1.5rem;
         display: flex;
@@ -393,3 +428,19 @@ nav {
           text-overflow: ellipsis;
           white-space: nowrap;
           padding: 0 2rem; }
+          #posts-container .posts-table .posts-table__content .posts-table__row .title-container .title {
+            margin: 0;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            color: black;
+            width: fit-content;
+            border-bottom: 1px solid transparent; }
+            #posts-container .posts-table .posts-table__content .posts-table__row .title-container .title:hover {
+              border-bottom: 1px solid black; }
+        #posts-container .posts-table .posts-table__content .posts-table__row .post-info-container {
+          display: flex;
+          align-items: center; }
+          #posts-container .posts-table .posts-table__content .posts-table__row .post-info-container svg {
+            width: 2rem;
+            height: 2rem; }

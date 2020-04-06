@@ -6,7 +6,7 @@
 
 
     .posts-table {
-        // background-color: olivedrab;
+        
         width: 100%;
         height: calc(100vh - 3 * #{$height-nav-index});
         padding: 0 1.5rem 2rem 1.5rem;
@@ -21,10 +21,13 @@
 
             .post-button-container {
                 flex: 1;
-
+                position: relative;
                 a {
                     font-size: 2rem;
-                    
+                }
+
+                h6 {
+                    @include absCenter;
                 }
             }
 
@@ -53,8 +56,8 @@
             border-bottom: none;
 
             .posts-table__row {
-                // I will show 10 records by default per page
-                height: calc(100% / 10);
+                // I will show 8 records by default per page
+                height: calc(100% / 8);
 
                 width: 100%;
                 font-size: 1.5rem;
@@ -72,11 +75,35 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     padding: 0 2rem;
+
+                    .title {
+                        margin: 0;
+                        font-weight: bold;
+                        text-decoration: none;
+                        display: block;
+                        color: black;
+                        width: fit-content;
+                        border-bottom: 1px solid transparent;
+
+                        &:hover {
+                            border-bottom: 1px solid black;
+                        }
+                    }
+
+                    .content {
+                       
+                    }
  
                 }
 
                 .post-info-container {
-
+                    display: flex;
+                    align-items: center;
+                    svg {
+                        width: 2rem;
+                        height: 2rem;
+                    }
+                    
                 }
 
 
