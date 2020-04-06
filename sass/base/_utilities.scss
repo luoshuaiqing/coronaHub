@@ -1,0 +1,8 @@
+.text-small, .error {
+    white-space: nowrap;
+    
+    @include respond(tab-land) {
+        font-size: 1.2rem;
+    }
+    
+}

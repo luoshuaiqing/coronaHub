@@ -1,0 +1,211 @@
+.authenticate-container-login, .authenticate-container-signup{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-width: 300px;   
+}
+
+.authenticate-container-login {
+    min-height: 400px;
+}
+
+.authenticate-container-signup {
+    min-height: 500px;
+}
+
+.form-authenticate {
+    @include absCenter;
+    width: 30%;
+    min-width: 300px;
+
+    // background-color: orangered;
+
+    .header {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        font-size: 4.5rem;
+        text-transform: uppercase;
+        font-weight: 650 !important;
+        
+        -webkit-background-clip: text;
+        color: transparent;
+        // background-image: linear-gradient(to right, white, rgb(73, 65, 65));
+        background-image: linear-gradient(to right, rgba($color-primary, .1), rgba($color-primary-dark, 1));
+
+
+        letter-spacing: 2px;
+        transition: all 0.3s;
+        transition: background-image 0;
+
+
+        &:hover {
+            transform: skewY(2deg) skewX(15deg) scale(1.2);
+            text-shadow: 1rem 2rem 4rem rgba(black, .2);
+            font-weight: 700 !important;
+            // background-image: linear-gradient(to right, white, black);
+            // background-image: none;
+            // background-color: rgba(#343a40, .9);
+        }
+    }
+
+    .form-img-container {
+        display: flex;
+        justify-content: center;
+
+
+        .form-img {
+            $img-size: 7.5rem;
+            width: $img-size;
+            height: $img-size;
+            border-radius: 50%;
+
+            margin-bottom: 5rem;
+            fill: rgba($color-primary, .5);
+            transition: all .3s;
+            &:hover {
+                fill: rgba($color-primary, 1);
+            }
+        }
+        
+    }
+
+    .my-input-group {
+        $font-size: 1.5rem;
+        $border-bottom-size: .3rem;
+
+        position: relative;
+        width: 75%;
+        margin: 0 auto;
+        
+        font-size: $font-size;
+        margin-bottom: 2rem;
+        
+
+        input {
+            display: block;
+            width: 100%;
+            font-size: inherit;
+            font-family: none;
+            outline: none;
+            padding: .5rem 3px;
+            border: none;
+            background-color: transparent;
+
+
+            border-bottom: $border-bottom-size solid grey;
+            transition: all .3s;
+
+               
+            
+
+            &:focus {
+                border-bottom: $border-bottom-size solid $color-primary-dark !important;
+            }
+
+            &:focus:invalid {
+                border-bottom: $border-bottom-size solid red !important;
+            }
+
+            &:placeholder-shown ~ label {
+                transform: translate($border-bottom-size, calc(-1 * (100% + .5rem + #{$border-bottom-size})));
+                opacity: 0;
+             
+            }
+        }
+
+        label {
+            display: block;
+            font-size: inherit;
+            
+            color: $color-primary;
+            font-weight: 500;
+            // this is to make label's z-index work
+            position: relative;
+            z-index: -1;
+            
+            transform: translate(3px, calc(-1 * (200% + 1rem + #{$border-bottom-size})));
+            opacity: 1;
+            transition: all .3s;
+        }
+
+
+        .error {
+            position: absolute;
+            width: 100%;
+            text-align: right;
+            bottom: 0;
+            right: 0;
+        }
+
+
+
+    }
+
+
+    .form-button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        a {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            color: white !important;
+            width: 50%;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+
+            background-image: linear-gradient(to right, rgba($color-primary, .5), rgba($color-primary, 1));
+            
+            
+            transition: all .5s;
+
+            letter-spacing: 2px;
+            font-weight: 600;
+
+            &:hover {
+                transform: translateY(-3px);
+                width: 75%;
+                background-image: linear-gradient(to right, rgba($color-primary-dark, .5), rgba($color-primary, 1));
+            }
+
+            &:active {
+                transform: translateY(-1px);
+                width: 75%;
+                background-image: linear-gradient(to right, rgba($color-primary-dark, .5), rgba($color-primary, 1));
+            }
+        }
+    }
+
+
+    .form-button-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        a {
+            width: 75%;
+            text-align: right;
+            text-decoration: none;
+            font-size: 1.3rem;
+            color: rgba($color-primary, 1);
+
+            span {
+                
+                
+
+                &:hover {
+                    border-bottom: 1px solid currentColor;
+                    
+                }
+            }
+            
+        }
+    }
+
+}

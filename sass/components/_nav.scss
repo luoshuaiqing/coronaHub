@@ -65,7 +65,7 @@ nav {
 
 .nav-secondary {
     justify-content: space-between;
-    background-color: orangered;
+    background-color: rgba($color-primary, .2);
 
     > .header-box {
         height: 100%;
@@ -116,24 +116,18 @@ nav {
             transition: all .5s;
 
             transform: translateX(calc(-100% - 1rem));
-        }
-
-
-
-        
-        
+        }   
     }
-
 
 
 }
 
 
 .header-nav {
-    background-color: greenyellow;
+    // background-color: greenyellow;
     padding: 1rem 0;
     display: flex;
-    // justify-content: space-between;
+    
     align-items: center;
     height: $height-nav-index;
 
