@@ -10,15 +10,19 @@
 
 	$category = $_POST['category'];
 
-	$sql = "SELECT * FROM item WHERE user_id = ". $user_id .";";
-	$result_item = $mysqli->query($sql);
+	$sql_prepared = "SELECT * FROM item WHERE category = ?;";
+	$statement = $mysqli->prepare($sql_prepared);
+	$statement->bind_param("s",$statement);
+
+	$result_item = $statment->execute();
 	if(!$result_item)
 	{
 		echo $mysqli->error;
 		exit();
 	}
+
 	
 
-	// can use $result_item to access all the items posted by a specific user
-	// can use $result_post to access all the posts posted by a specific user (-- to do --)
+	// can use $result_item to access all the items in a specific category (For post_item.html)
+	
 ?>
