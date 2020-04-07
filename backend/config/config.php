@@ -1,8 +1,9 @@
 <?php 
 	session_start();
-	define("DB_HOST","303.itpwebdev.com");
-	define("DB_USER","tongzhi_db_user");
-	define("DB_PASS","tongzhi19981007");
-	define("DB_NAME","tongzhi_final_project_db");
+	define("DB_HOST","www.joinme.us");
+	define("DB_PORT",3306);
+	define("DB_USER","joinmeus_db_user");
+	define("DB_PASS","Lsq987069!");
+	define("DB_NAME","joinmeus_corona_db");
 	define("DEST","/Users/tongzhi/Desktop/Projects/CoronaHub/Web/coronaHub/storage/");
 ?>
