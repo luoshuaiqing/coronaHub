@@ -96,7 +96,8 @@
         }
 
         .upload-box {
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            
 
             $input-width: 15rem;
             .input-group {
@@ -117,9 +118,14 @@
                     }
                 }
             }
+            
+            button {
+                white-space: nowrap;
+            }
 
             #add-upload-box {
                 display: flex;
+                overflow: scroll;
             }
         }
 

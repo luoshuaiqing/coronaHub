@@ -507,7 +507,7 @@ nav {
       #post-item-container .post-item-form .category-box .content > span {
         margin-right: 3rem; }
     #post-item-container .post-item-form .upload-box {
-      flex-wrap: wrap; }
+      flex-wrap: nowrap; }
       #post-item-container .post-item-form .upload-box .input-group {
         flex: 0 0 15rem;
         margin-right: 2rem; }
@@ -519,8 +519,11 @@ nav {
               margin-bottom: 0;
               width: 15rem;
               font-size: 1.5rem !important; }
+      #post-item-container .post-item-form .upload-box button {
+        white-space: nowrap; }
       #post-item-container .post-item-form .upload-box #add-upload-box {
-        display: flex; }
+        display: flex;
+        overflow: scroll; }
     #post-item-container .post-item-form .intro-box .input-group {
       height: 75%;
       width: 75%; }
