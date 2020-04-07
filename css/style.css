@@ -453,6 +453,7 @@ nav {
   padding: 0 3rem;
   height: calc(100vh - 2 * 6rem); }
   #post-item-container .post-item-form {
+    min-height: 450px;
     height: calc(100vh - 3 * 6rem - 3rem);
     border: 1px solid black;
     padding-bottom: 3rem;
@@ -463,6 +464,15 @@ nav {
     display: flex;
     flex-direction: column;
     background-color: rgba(23, 162, 184, 0.1); }
+    @media only screen and (min-width: 112.5em) {
+      #post-item-container .post-item-form {
+        min-height: 550px; } }
+    @media only screen and (max-width: 56.25em) {
+      #post-item-container .post-item-form {
+        min-height: 400px; } }
+    @media only screen and (max-width: 37.5em) {
+      #post-item-container .post-item-form {
+        min-height: 300px; } }
     #post-item-container .post-item-form > div {
       flex: 1;
       font-size: 2rem;
@@ -509,6 +519,8 @@ nav {
               margin-bottom: 0;
               width: 15rem;
               font-size: 1.5rem !important; }
+      #post-item-container .post-item-form .upload-box #add-upload-box {
+        display: flex; }
     #post-item-container .post-item-form .intro-box .input-group {
       height: 75%;
       width: 75%; }

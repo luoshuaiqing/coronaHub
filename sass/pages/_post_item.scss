@@ -1,9 +1,26 @@
 #post-item-container {
     padding: 0 3rem;
     height: calc(100vh - 2 * #{$height-nav-index});
-
+    
 
     .post-item-form {
+        min-height: 450px;
+        @include respond(big-desktop) {
+            min-height: 550px;
+        }
+
+        @include respond(tab-land) {
+
+        }
+
+        @include respond(tab-port) {
+            min-height: 400px;
+        }
+
+        @include respond(phone) {
+            min-height: 300px;
+        }
+
         height: calc(100vh - 3 * #{$height-nav-index} - 3rem);
         border: 1px solid black;
         padding-bottom: 3rem;
@@ -99,6 +116,10 @@
                         }    
                     }
                 }
+            }
+
+            #add-upload-box {
+                display: flex;
             }
         }
 
