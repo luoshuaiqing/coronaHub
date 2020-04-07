@@ -9,14 +9,13 @@
 		echo $mysqli->connect_error;
 		exit();
 	}
-	$user_id = $_SESSION["user_id"]; // can we really get this?
+	$user_id = $_SESSION["user_id"];
 	$name = $_POST["username"];
-	$category = $_POST["category"];
-	$amount = $_POST["amount"];
+	$content = $_POST["content"];
+	$category = $_POST['category'];
 	$timestamp = date("Y-m-d H:i:s");
-	$description = $_POST["description"];
 
-	/* For Simplicity, Now only support uploading one file */
+	/* For Simplicity, Now only support uploading one fike */
 	if  ($_FILES['picture1']['size']  ==  0)  {
 		die("ERROR: No picture uploaded");
 	}
@@ -36,7 +35,7 @@
 	
 	/* Figure out the next available id to use */
 	$cnt = 1;
-	$sql = "SELECT * FROM item";
+	$sql = "SELECT * FROM post";
 	$result_cnt = $mysqli->query($sql);
 	if(!$result_cnt)
 	{
@@ -56,9 +55,9 @@
 	$path2 = null; // null for now
 	
 
-	$sql_prepared_insert = "INSERT INTO item(user_id,name,category,amount,description,timestamp,path1,path2) VALUES(?,?,?,?,?,?,?,?);";
+	$sql_prepared_insert = "INSERT INTO post(author_id,author_name,category,content,publish_time,update_time,path1,path2) VALUES(?,?,?,?,?,?,?,?);";
 	$statement_insert = $mysqli->prepare($sql_prepared_insert);
-	$statement_insert->bind_param("ississss",$user_id,$name,$category,$amount,$description,$timestamp,$path1,$path2);
+	$statement_insert->bind_param("isssssss",$user_id,$name,$category,$content,$timestamp,$timestamp,$path1,$path2);
 
 	$executed_insert = $statement_insert->execute();
 	if(!$executed_insert)
