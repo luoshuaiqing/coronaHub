@@ -9,6 +9,7 @@
 		echo $mysqli->connect_error;
 		exit();
 	}
+
 	$user_id = $_SESSION["user_id"]; // can we really get this?
 	$name = $_POST["username"];
 	$category = $_POST["category"];
@@ -68,5 +69,5 @@
 	}
 	$statement_insert->close();
 	$mysqli->close();
-
+	header("Location: #");
 ?>

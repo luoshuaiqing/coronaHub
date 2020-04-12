@@ -1,6 +1,7 @@
 <?php 
 	// only name, amount and description are able to be changed
 	require "../config/config.php";
+	
 	$isUpdated = false;
 	if(!isset($_POST['item_id']) || empty($_POST['item_id']))
 	{

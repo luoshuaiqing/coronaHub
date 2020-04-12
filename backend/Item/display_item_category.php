@@ -8,6 +8,7 @@
 		exit();
 	}
 
+
 	$category = $_POST['category'];
 
 	$sql_prepared = "SELECT * FROM item WHERE category = ?;";
