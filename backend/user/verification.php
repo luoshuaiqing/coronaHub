@@ -108,6 +108,8 @@ else {
  }
 }
  ?>
+
+ <!-- Used only for testing purposes -->
 <!DOCTYPE html>
 <html>
 <head>
