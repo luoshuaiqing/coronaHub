@@ -1,6 +1,9 @@
 <?php
+session_start();
 session_destroy();
 ?>
+
+<!-- Below is just for testing -->
 <!DOCTYPE html>
 <html>
 <head>

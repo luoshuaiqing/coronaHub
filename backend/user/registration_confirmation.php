@@ -1,6 +1,5 @@
 <?php
-include 'nav.php';
-require 'config.php';
+require '../config/config.php';
 //second line of checking
    if($_SESSION["verification"]!=$_POST["verification"])
    {

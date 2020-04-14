@@ -1,10 +1,9 @@
 <?php
-require 'config.php';
-	include 'nav.php';
+require '../config/config.php';
 // If user is logged in, redirect user to home page. Don't allow them to see the login page.
 if( isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
 
-	header('Location: home_page.php');
+	header('Location: #'); // go to home page
 }
 else {
 	// If user attempted to log in (aka submitted the form)
@@ -79,6 +78,8 @@ else {
 	}
 }
 ?>
+
+<!-- Below is just for testing -->
 <!DOCTYPE html>
 <html>
 <head>

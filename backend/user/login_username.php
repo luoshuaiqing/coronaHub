@@ -79,6 +79,9 @@ else {
 	}
 }
 ?>
+
+
+<!-- Below is just for testing -->
 <!DOCTYPE html>
 <html>
 <head>

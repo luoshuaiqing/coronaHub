@@ -1,6 +1,5 @@
 <?php
-	include 'nav.php';
-require 'config.php';
+require '../config/config.php';
 //second line of checking
 if ( !isset($_POST['email']) || empty($_POST['email'])
 	|| !isset($_POST['username']) || empty($_POST['username'])
@@ -90,11 +89,13 @@ else {
            $ver_code=rand(1000,9999);
            $_SESSION['ver_code']=$ver_code;
            $subject="邮件确认码";
-           $message="您好，您的确认码是". $ver_code;
-           $headers = "Content-Type: text/html" . "\r\n" . "";
+           $message="您好，您的确认码是" . $ver_code;
+           $headers = 'From: webmaster@example.com' . "\r\n" .
+    					'Reply-To: webmaster@example.com' . "\r\n" .
+    					'X-Mailer: PHP/' . phpversion();
            if( mail($email, $subject, $message, $headers) ) {
 	// Doesn't guarantee email has actually been received. Email clients can reject any emails or put it in spam etc if they see any suspicious activity.
-	        echo "Email sent";
+	        	echo "Email sent";
 	        }
            else {
 	         echo "There was a problem sending email.";
