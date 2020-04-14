@@ -11,7 +11,7 @@
 
   <body>
     <div class="authenticate-container-signup">
-      <form action="" class="form-authenticate">
+      <form action="backend/user/registration_confirmation.php" class="form-authenticate" method="POST">
         <h1 class="header">用户注册</h1>
         <div class="form-img-container">
           <svg class="form-img">
@@ -20,12 +20,12 @@
         </div>
 
         <div class="my-input-group">
-          <input type="text" placeholder="用户名" id="username" required />
+          <input type="text" placeholder="用户名" id="username" name="username" required />
           <label for="username">用户名</label>
           <span id="username-error" class="text-danger text-small error"></span>
         </div>
         <div class="my-input-group email-box">
-          <input type="email" placeholder="邮箱" id="email" required />
+          <input type="email" placeholder="邮箱" id="email" name="email" required />
           <label for="email">邮箱</label>
           <button class="btn btn-lg btn-outline-info btn-send-code">发送</button>
           <span id="email-error" class="text-danger text-small error"></span>
@@ -36,11 +36,17 @@
           <span id="code-error" class="text-danger text-small error"></span>
         </div>
         <div class="my-input-group">
+          <input type="text" placeholder="微信号" id="wechatid" name="wechatid" required />
+          <label for="code">微信号</label>
+          <span id="code-error" class="text-danger text-small error"></span>
+        </div>
+        <div class="my-input-group">
           <input
             type="password"
             placeholder="密码"
             id="password"
             minlength="8"
+            name="password"
             required
           />
           <label for="password">密码</label>
@@ -62,7 +68,7 @@
           <div id="error" class="text-danger text-center error"></div>
         </div>
         <div id="submit" class="form-button-container">
-          <a href="#">注册</a>
+          <button type="submit">注册</button>
         </div>
 
         <div class="form-button-link">

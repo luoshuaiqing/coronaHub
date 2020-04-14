@@ -10,7 +10,6 @@ if ( !isset($_POST['email']) || empty($_POST['email'])
 else {
 	// Sanitize user input
 	//Connectr to data base and add this to new database
-	
 
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	$username=$_POST['username'];
@@ -107,63 +106,4 @@ else {
 
  }
 }
- ?>
-
- <!-- Used only for testing purposes -->
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Registration Confirmation | Song Database</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="final.css">
-</head>
-<body>
-
-    <div class="container">
-	  <div class="row">
-		<div class="jumbotron header">
-            <h1 class="display-4">Rate my traveling</h1>
-            <p class="lead">Record the best memory in your traveling!</p>
-        </div>
-	 </div> <!-- .row -->
-	</div> <!-- .container -->
-	<div class="container">
-		<div class="row">
-			<h1 class="col-12 mt-4">User Registration</h1>
-		</div> <!-- .row -->
-	</div> <!-- .container -->
-
-	<div class="container">
-
-		<div class="row mt-4">
-			<div class="col-12">
-				<?php if ( isset($error) && !empty($error) ) : ?>
-					<div class="text-danger"><?php echo $error; ?></div>
-				<?php else : ?>
-				  <form action="registration_confirmation.php" method="POST">
- 
-			       <div class="form-group row">
-				      <div class="row"></div>
-				     <div class="col-sm-12 col-md-9">
-					     <input type="text" class="form-control" id="verification-id" name="verification">
-					     <small id="username-error" class="invalid-feedback">请输入确认码</small>
-				    </div>
-			     </div> <!-- .form-group -->
-			   </form>
-			  <?php endif; ?>
-		</div> <!-- .col -->
-	</div> <!-- .row -->
-
-	<div class="row mt-4 mb-4">
-		<div class="col-12">
-			<a href="login.php" role="button" class="btn btn-primary">Login</a>
-			<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" role="button" class="btn btn-light">Back</a>
-		</div> <!-- .col -->
-	</div> <!-- .row -->
-
-</div> <!-- .container -->
-
-</body>
-</html>
+?>
