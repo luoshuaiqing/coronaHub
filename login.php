@@ -11,7 +11,7 @@
 
   <body>
     <div class="authenticate-container-login">
-      <form action="" class="form-authenticate">
+      <form action="backend/user/login_email.php" method="POST" class="form-authenticate">
         <h1 class="header">用户登录</h1>
         <div class="form-img-container">
           <svg class="form-img">
@@ -27,6 +27,7 @@
             placeholder="邮箱"
             id="email"
             pattern="^\S+$"
+            name="email"
             required
           />
           <label for="email">邮箱</label>
@@ -40,6 +41,7 @@
             id="password"
             minlength="8"
             pattern="^\S+$"
+            name="password"
             required
           />
           <label for="password">密码</label>
@@ -48,11 +50,11 @@
         </div>
 
         <div id="submit" class="form-button-container">
-          <a href="#">登录</a>
+          <button type="submit">登录</button>
         </div>
 
         <div class="form-button-link">
-          <a href="signup.html"
+          <a href="signup.php"
             ><span>现在注册!</span></a
           >
         </div>

@@ -70,22 +70,22 @@
                 <div class="content">
                     <div class="img-box">
                         <img src="assets/nav-mask.png" alt="mask img">
-                        <input type="checkbox" class="hidden" name="mask">
+                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
                     </div>
                     <span>口罩</span>
                     <div class="img-box">
                         <img src="assets/nav-glass.png" alt="glass img">
-                        <input type="checkbox" class="hidden" name="glass">
+                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
                     </div>
                     <span>护目镜</span>
                     <div class="img-box">
                         <img src="assets/nav-discontaminate.png" alt="discontaminate img">
-                        <input type="checkbox" class="hidden" name="discontaminate">
+                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
                     </div>
                     <span>消毒用具</span>
                     <div class="img-box">
                         <img src="assets/nav-necessity.png" alt="necessity img">
-                        <input type="checkbox" class="hidden" name="necessity">
+                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
                     </div>
                     <span>日常用品</span>
                 </div>
@@ -102,12 +102,30 @@
                 <div id="add-upload-box">
                     <div class="input-group content">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="upload-photo">
+                            <input type="file" class="custom-file-input" id="upload-photo">
                             <label class="custom-file-label" for="upload-photo">上传</label>
                         </div>
                     </div>
                 </div>
                 
+                <!-- <div class="input-group content">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="upload-photo">
+                        <label class="custom-file-label" for="upload-photo">上传</label>
+                    </div>
+                </div>
+                <div class="input-group content">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="upload-photo">
+                        <label class="custom-file-label" for="upload-photo">上传</label>
+                    </div>
+                </div>
+                <div class="input-group content">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="upload-photo">
+                        <label class="custom-file-label" for="upload-photo">上传</label>
+                    </div>
+                </div> -->
                 
                 
                 <button class="btn btn-lg btn-info" id="btn-upload-another">继续上传</button>

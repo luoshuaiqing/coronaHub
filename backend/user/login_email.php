@@ -1,53 +1,55 @@
 <?php
 require '../config/config.php';
 // If user is logged in, redirect user to home page. Don't allow them to see the login page.
-if( isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
-
-	header('Location: #'); // go to home page
+if( false)//isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+{
+	header('Location: ../../index.php'); // go to home page
 }
-else {
+else 
+{
+	if(!isset($_POST['email']) || empty($_POST['email']))
+	{
+		$error = "Please enter an email address.";
+	}
+	else if(!isset($_POST['password']) || empty($_POST['password']))
+	{
+		$error = "Please enter a password.";
+	}
 	// If user attempted to log in (aka submitted the form)
-	if( isset($_POST['email']) && isset($_POST['password']) ){
-			
-		if( empty($_POST['username']) || empty($_POST['password']) ) {
+	else
+	{
+		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-			$error = "Please enter a username and password ";
+		if($mysqli->connect_errno) {
+			echo $mysqli->connect_error;
+			exit();
 		}
-		//authencate the user
-		else{
 
-			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-			if($mysqli->connect_errno) {
-				echo $mysqli->connect_error;
-				exit();
-			}
-	      }
-
-            $emailInput = $_POST["email"];
-            $passwordInput = $_POST["password"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
             //hash user input of password
-            $passwordInput = hash("sha256", $passwordInput);
-            $sql="SELECT * FROM user_info
-                  WHERE uemail=?;"; 
-            $statement=$mysqli->prepare($sql);
-            $statement->bind_param("s",$usernameInput);
-           $executed=$statement->execute();
-            if(!$executed){
-            	echo $mysqli->error();
-                exit();
-            }
-            $results=$statement->get_result();
-            if($results->num_rows==0)
-            {
-			   $error = "邮箱不存在";
-		    }
+        $password = hash("sha256", $password);
 
-			else{
-			$sql_final="SELECT * FROM user_info 
-                       WHERE email=?  AND password=?;";
+        $sql="SELECT * FROM user WHERE email = ?;"; 
+        $statement=$mysqli->prepare($sql);
+        $statement->bind_param("s",$email);
+        $executedEmail=$statement->execute();
+        if(!$executedEmail){
+            echo $mysqli->error();
+            exit();
+        }
+        $results=$statement->get_result();
+        if($results->num_rows==0)
+        {
+			$error = "邮箱不存在";
+		}
+		else
+		{
+			$statement->close();
+			$sql_final="SELECT * FROM user 
+                       WHERE email=? AND password=?;";
 			$statement_final=$mysqli->prepare($sql_final);
-            $statement_final->bind_param("ss",$emailInput,$passwordInput);
+            $statement_final->bind_param("ss",$email,$password);
             $executed_final=$statement_final->execute();
             if(!$executed_final){
             	echo $mysqli->error();
@@ -67,99 +69,23 @@ else {
 			   $row=$results_final->fetch_assoc();
 			   $_SESSION['logged_in'] = true;
 			   $_SESSION['user_id']=$row['user_id'];
-			   $_SESSION['username'] = $_POST['username'];
-			   header('Location:home_page.php');
-			 }
-			 $statement->close();
-			 $statement_final->close();
-			 $mysqli->close();
-		 }
+			   $_SESSION['username'] = $row['username'];
+			}
+			$statement_final->close();
+			$mysqli->close();
+		}
 		
+	}
+	if(isset($error) && !empty($error))
+	{
+		header("Location: ../../login.php?error=" . $error);
+	}
+	else
+	{
+		header("Location: ../../index.php");
 	}
 }
 ?>
-
-<!-- Below is just for testing -->
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login | Rate my traveling</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="final.css">
-</head>
-<body>
-	<div class="container">
-	  <div class="row">
-		<div class="jumbotron header">
-            <h1 class="display-4">Rate my traveling</h1>
-            <p class="lead">Record the best memory in your traveling!</p>
-        </div>
-	 </div> <!-- .row -->
-	</div> <!-- .container -->
-	<div class="container">
-		<div class="row">
-			<h1 class="col-12 mt-4 mb-4">Login</h1>
-		</div> <!-- .row -->
-	</div> <!-- .container -->
-
-	<div class="container">
-
-		<form action="login_email.php" method="POST">
-
-			<div class="row mb-3">
-				<div class="font-italic text-danger col-sm-9 ml-sm-auto">
-					<!-- Show errors here. -->
-					<?php
-						if ( isset($error) && !empty($error) ) {
-							echo $error;
-						}
-					?>
-				</div>
-			</div> <!-- .row -->
-			
-
-			<div class="form-group row">
-				<label for="username-id" class="col-sm-12 col-md-3 col-form-label text-sm-right">邮箱:</label>
-				<div class="col-sm-12 col-md-9">
-					<input type="text" class="form-control" id="email-id" name="email">
-				</div>
-			</div> <!-- .form-group -->
-
-			<div class="form-group row">
-				<label for="password-id" class="col-sm-12 col-md-3 col-form-label text-sm-right">密码:</label>
-				<div class="col-sm-12 col-md-9">
-					<input type="password" class="form-control" id="password-id" name="password">
-				</div>
-			</div> <!-- .form-group -->
-
-			<div class="form-group row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-9 mt-2">
-					<button type="submit" class="btn btn-primary">登陆</button>
-					<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" role="button" class="btn btn-light">取消</a>
-				</div>
-			</div> <!-- .form-group -->
-		</form>
-
-			<div class="col-sm-9 ml-sm-auto">
-				<a href="login_username.php">您可以尝试用户名登陆</a>
-			</div>
-		</div> <!-- .row -->
-
-		<div class="row">
-			<div class="col-sm-9 ml-sm-auto">
-				<a href="register.php">创建账号</a>
-			</div>
-		</div> <!-- .row -->
-
-	</div> <!-- .container -->
-</body>
-</html>
-
-
-
 
 
 

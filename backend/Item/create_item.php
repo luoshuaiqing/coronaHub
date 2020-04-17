@@ -10,29 +10,62 @@
 		exit();
 	}
 
-	$user_id = $_SESSION["user_id"]; // can we really get this?
-	$name = $_POST["username"];
-	$category = $_POST["category"];
+	$user_id = 5; // hard code?
+	$name = $_POST["name"];
+	//$category = $_POST["category"];
+	$category = null;
+	if(isset($_POST['mask']) && !empty($_POST['mask']))
+	{
+		$category = 'mask';
+	}
+	else if(isset($_POST['goggle']) && !empty($_POST['goggle']))
+	{
+		$category = 'goggle';
+	}
+	else if(isset($_POST['discontaminate']) && !empty($_POST['discontaminate']))
+	{
+		$category = 'discontaminate';
+	}
+	else if(isset($_POST['necessity']) && !empty($_POST['necessity']))
+	{
+		$category = 'necessity';
+	}
+	else
+	{
+		// check error
+	}
 	$amount = $_POST["amount"];
 	$timestamp = date("Y-m-d H:i:s");
 	$description = $_POST["description"];
 
-	/* For Simplicity, Now only support uploading one file */
-	if  ($_FILES['picture1']['size']  ==  0)  {
-		die("ERROR: No picture uploaded");
-	}
+	echo "<hr>";
+	var_dump($_FILES);
+	echo "<hr>";
 
+	/* For Simplicity, Now only support uploading one file */
+	if  ($_FILES['picture1']['size']  ==  0)  
+	{
+		$error = "Please upload a picture.";
+		// header("Location: ../../post_item.php?error=". $error);
+		// exit();
+	}
+	
 	//  check  if  file  type  is  allowed 
 	$allowedExtension  =  array("png","jpg","jpeg","bmp","gif");
 	$extension = substr($_FILES['picture1']['name'], strrpos($_FILES['picture1']['name'], '.') + 1);
-	if  (!in_array($extension,  $allowedExtension)) {
-		die("ERROR: Supported Extensions are: png, jpg, jpeg, bmp and gif");
+	if  (!in_array($extension,  $allowedExtension)) 
+	{
+		$error = "Supported Extensions are: png, jpg, jpeg, bmp and gif";
+		// header("Location: ../../post_item.php?error=". $error);
+		// exit();
 	} 
 	
 	//  check  if  this  is  a  valid  upload
 	if  (!is_uploaded_file($_FILES['picture1']['tmp_name']))   
 	{
-		die("ERROR:  Not  a  valid  file  upload"); 
+		$error = "Not a valid file upload";
+		// header("Location: ../../post_item.php?error=". $error); 
+		// exit();
 	} 
 	
 	/* Figure out the next available id to use */
@@ -46,13 +79,17 @@
 	}
 	while($row = $result_cnt->fetch_assoc())
 	{
-		$cnt = $cnt+1;
+		$cnt = $cnt+1; // concurrency issue
 	}
 
-
 	//  set  the  name  of  the  target  directory
-	$path1 = DEST . "file" . $cnt . $extension;
-	move_uploaded_file($_FILES['picture1']['tmp_name'],  $path)  or  die("Cannot process the uploaded file");
+	$path1 = DEST . "file" . $cnt . "." . $extension;
+	if(!move_uploaded_file($_FILES['picture1']['tmp_name'],  $path1))
+	{
+	 	$error = "Cannot process the uploaded file.";
+		// header("Location: ../../post_item.php?error=". $error); 
+		// exit();
+	}
 
 	$path2 = null; // null for now
 	
@@ -69,5 +106,5 @@
 	}
 	$statement_insert->close();
 	$mysqli->close();
-	header("Location: #");
+	//header("Location: #"); // goto the according items.php (embed category in url)
 ?>

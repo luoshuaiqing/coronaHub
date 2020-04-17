@@ -78,9 +78,10 @@ else {
 	      }
 	
 		  
-	    else{
-	// Otherwise, insert this user into the users table.
-	     $sql_email="SELECT * FROM user
+	    else
+	    {
+			// Otherwise, insert this user into the users table.
+	    $sql_email="SELECT * FROM user
 	                  WHERE wechat_id=?;";
 		$statement_wechat=$mysqli->prepare($sql_email);
         $statement_wechat->bind_param("s",$wechatid);
@@ -91,50 +92,40 @@ else {
         }
 		$results_wechat=$statement_wechat->get_result();
 		$statement_wechat->close();
-        if(!$results_wechat){
+        if(!$results_wechat)
+        {
             echo $mysqli->error();
             exit();
-         }
-	     if($results_wechat->num_rows>0)
-		  {
-            $error = "Wechat has been already taken, please choose another one.";
-	      }
-     else{
-
-		$sql= "INSERT INTO user（username, email, password) VALUES(?,?,?);";
-		// $sql = "INSERT INTO user (username, email, password) VALUES ('John', 'hi@usc.edu', '12345678');";
-		$statement=$mysqli->prepare($sql);
-
-		// if ($mysqli->query($sql) === TRUE) {
-		// 	echo "New record created successfully";
-		// } else {
-		// 	echo "Error: " . $sql . "<br>" . $conn->error;
-		// }
-
-		// echo "=================";
-		// echo $username;
-		// echo "=================";
-		// echo $email;
-		// echo "=================";
-		// echo $password;
-		var_dump($statement);
-		$statement->bind_param("sss", $username, $email, $password);
-		
-		$executed=$statement->execute();
-		if(!$executed)
+        }
+	    if($results_wechat->num_rows>0)
 		{
-			echo "wrong!";
-		echo $mysqli->error;
-		exit();
-		}
+            $error = "Wechat has been already taken, please choose another one.";
+	    }
+     	else
+     	{
+			$sql= "INSERT INTO user(username, email, password) VALUES('". $username ."', '". $email ."', '". $password."' )";
+			// $sql = "INSERT INTO user (username, email, password) VALUES ('John', 'hi@usc.edu', '12345678');";
+			
+			$executed = $mysqli->query($sql);
 
-		var_dump("success");
-	  
-		$statement->close();
-		$mysqli->close();
-	  }
+			//$statement->bind_param("sss", $username, $email, $password);
+			
+			//$executed=$statement->execute();
+			if(!$executed)
+			{
+				echo "wrong!";
+				echo $mysqli->error;
+				exit();
+			}
+
+			var_dump("success");
+			$mysqli->close();
+			$_SESSION['username'] = $username;
+			$_SESSION['logged_in'] = true;
+			header("Location: ../../index.php");
+	  	}
     }
-   }
+  }
 }
    
 

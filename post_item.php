@@ -55,7 +55,7 @@
     </nav>
 
 
-    <form class="container-fluid" id="post-item-container" action="#" method="POST">
+    <form class="container-fluid" id="post-item-container" action="backend/item/create_item.php" method="POST" enctype="multipart/form-data">
         <div class="header-nav">
             <h3 class="title-box">物品上传</h3>
         </div>
@@ -63,29 +63,29 @@
         <div class="post-item-form">
             <div class="name-box">
                 <span class="title">名称</span>
-                <div class="content"><input type="text" class="name-input"></div>
+                <div class="content"><input type="text" class="name-input" name="name"></div>
             </div>
             <div class="category-box">
                 <span class="title">分类</span>
                 <div class="content">
                     <div class="img-box">
                         <img src="assets/nav-mask.png" alt="mask img">
-                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
+                        <input type="checkbox" class="hidden" name="mask">
                     </div>
                     <span>口罩</span>
                     <div class="img-box">
                         <img src="assets/nav-glass.png" alt="glass img">
-                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
+                        <input type="checkbox" class="hidden" name="goggle">
                     </div>
                     <span>护目镜</span>
                     <div class="img-box">
                         <img src="assets/nav-discontaminate.png" alt="discontaminate img">
-                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
+                        <input type="checkbox" class="hidden" name="discontaminate">
                     </div>
                     <span>消毒用具</span>
                     <div class="img-box">
                         <img src="assets/nav-necessity.png" alt="necessity img">
-                        <input type="checkbox" class="hidden" name="vehicle1" value="mask">
+                        <input type="checkbox" class="hidden" name="necessity">
                     </div>
                     <span>日常用品</span>
                 </div>
@@ -94,7 +94,7 @@
             <div class="count-box">
                 <span class="title">数量</span>
                 <div class="content input-group">
-                    <input type="text" class="count-input">
+                    <input type="text" class="count-input" name="amount">
                 </div>
             </div>
             <div class="upload-box">
@@ -102,7 +102,7 @@
                 <div id="add-upload-box">
                     <div class="input-group content">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="upload-photo">
+                            <input type="file" class="custom-file-input" id="upload-photo" name="picture1">
                             <label class="custom-file-label" for="upload-photo">上传</label>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
             <div class="intro-box">
                 <span class="title">简介</span>
                 <div class="content input-group">
-                    <textarea class="form-control"></textarea>
+                    <textarea class="form-control" name="description"></textarea>
                   </div>
             </div>
             <div class="contact-box">
@@ -148,7 +148,7 @@
                     <label class="form-check-label" for="bottom-checkbox">发布在首页（消耗贡献值)</label>
                 </div>
                 <button class="btn btn-lg btn-outline-info btn-cancel">取消</button>
-                <button class="btn btn-lg btn-info btn-submit">确定</button>
+                <button class="btn btn-lg btn-info btn-submit" type="submit">确定</button>
                 
             </div>
 
