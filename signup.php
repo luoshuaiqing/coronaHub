@@ -68,11 +68,11 @@
           <div id="error" class="text-danger text-center error"></div>
         </div>
         <div id="submit" class="form-button-container">
-          <button type="submit">注册</button>
+          <a href="#" id="btn-submit">注册</a>
         </div>
 
         <div class="form-button-link">
-          <a href="login.html"
+          <a href="login.php"
             ><span>现在登录!</span></a
           >
         </div>

@@ -50,7 +50,7 @@
         </div>
 
         <div id="submit" class="form-button-container">
-          <button type="submit">登录</button>
+          <a href="#" id="btn-submit">登录</a>
         </div>
 
         <div class="form-button-link">
