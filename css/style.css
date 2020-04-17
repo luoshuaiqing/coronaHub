@@ -88,6 +88,9 @@ ol li::before {
     .text-small, .error {
       font-size: 1.2rem; } }
 
+.hidden {
+  display: none; }
+
 nav {
   display: flex !important;
   padding: 1rem 3rem;
