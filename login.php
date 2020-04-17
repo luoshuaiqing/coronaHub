@@ -11,7 +11,7 @@
 
   <body>
     <div class="authenticate-container-login">
-      <form action="" class="form-authenticate">
+      <form action="" class="form-authenticate" method="POST">
         <h1 class="header">用户登录</h1>
         <div class="form-img-container">
           <svg class="form-img">
@@ -48,11 +48,11 @@
         </div>
 
         <div id="submit" class="form-button-container">
-          <a href="#">登录</a>
+          <a href="#" id="btn-submit">登录</a>
         </div>
 
         <div class="form-button-link">
-          <a href="signup.html"
+          <a href="signup.php"
             ><span>现在注册!</span></a
           >
         </div>
