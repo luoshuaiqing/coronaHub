@@ -33,7 +33,7 @@ $('#btn-upload-another').click((e) => {
         
     $('#add-upload-box').append(`<div class="input-group content">
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="upload-photo">
+        <input type="file" class="custom-file-input" name='upload-photo'>
         <label class="custom-file-label" for="upload-photo">上传</label>
     </div>
 </div>`);
