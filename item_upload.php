@@ -103,8 +103,8 @@
                 <div id="add-upload-box">
                     <div class="input-group content">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="picture1">
-                            <label class="custom-file-label" for="upload-photo">上传</label>
+                            <input type="file" class="custom-file-input" name="picture1" id="picture1">
+                            <label class="custom-file-label" for="picture1">上传</label>
                         </div>
                     </div>
                 </div>

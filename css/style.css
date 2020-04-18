@@ -742,3 +742,30 @@ nav {
         margin-left: .5rem; }
   #add-post-container .add-post-form .bottom-bar .btn-cancel {
     margin-right: 2rem; }
+
+#edit-profile-container .edit-profile-form > div .username-input, #edit-profile-container .edit-profile-form > div .wechat-input, #edit-profile-container .edit-profile-form > div .phone-input, #edit-profile-container .edit-profile-form > div .email-input {
+  outline: none;
+  padding: .5rem 1rem;
+  font-size: 1.25rem; }
+
+#edit-profile-container .edit-profile-form .email-box input {
+  width: auto !important; }
+
+#edit-profile-container .edit-profile-form .upload-box {
+  flex-wrap: nowrap; }
+  #edit-profile-container .edit-profile-form .upload-box .input-group {
+    flex: 0 0 15rem;
+    margin-right: 2rem; }
+    #edit-profile-container .edit-profile-form .upload-box .input-group .custom-file {
+      margin-top: 1rem; }
+      #edit-profile-container .edit-profile-form .upload-box .input-group .custom-file input {
+        width: 15rem; }
+        #edit-profile-container .edit-profile-form .upload-box .input-group .custom-file input + label {
+          margin-bottom: 0;
+          width: 15rem;
+          font-size: 1.5rem !important; }
+
+#edit-profile-container .edit-profile-form .bottom-bar {
+  display: flex; }
+  #edit-profile-container .edit-profile-form .bottom-bar > button:first-child {
+    margin-right: 7rem; }

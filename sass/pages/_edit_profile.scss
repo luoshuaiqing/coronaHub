@@ -1,0 +1,62 @@
+#edit-profile-container {
+
+    .edit-profile-form {
+
+
+        > div {
+
+            .username-input, .wechat-input, .phone-input, .email-input {
+                outline: none;
+                padding: .5rem 1rem;
+                font-size: 1.25rem;
+            }
+
+        }
+
+
+        .email-box {
+            
+
+            input {
+                width: auto !important;
+            }
+        }
+
+
+        .upload-box {
+            flex-wrap: nowrap;
+            
+
+            $input-width: 15rem;
+            .input-group {
+                flex: 0 0 $input-width;
+                margin-right: 2rem;
+
+                .custom-file {
+                    margin-top: 1rem;
+    
+                    input {
+                        width: $input-width;
+                        
+                        + label {
+                            margin-bottom: 0;
+                            width: $input-width;
+                            font-size: 1.5rem !important;
+                        }    
+                    }
+                }
+            }
+        }
+
+        .bottom-bar {
+            display: flex;
+
+            > button:first-child {
+                margin-right: 7rem;
+            }
+        }
+
+    }
+
+
+}
