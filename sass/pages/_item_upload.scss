@@ -1,52 +1,8 @@
 #post-item-container {
-    padding: 0 3rem;
-    height: calc(100vh - 2 * #{$height-nav-index});
     
-
     .post-item-form {
-        min-height: 450px;
-        @include respond(big-desktop) {
-            min-height: 550px;
-        }
 
-        @include respond(tab-land) {
-
-        }
-
-        @include respond(tab-port) {
-            min-height: 400px;
-        }
-
-        @include respond(phone) {
-            min-height: 300px;
-        }
-
-        height: calc(100vh - 3 * #{$height-nav-index} - 3rem);
-        border: 1px solid black;
-        padding-bottom: 3rem;
-        border-radius: 1rem;
-        padding: 2rem 4rem;
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-
-        background-color: rgba($color-primary, .1);
-
-        >div {
-
-            // to make the height of each div the same
-            flex: 1;
-            font-size: 2rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            .title {
-                flex: 0 0 12rem;
-            }
-
-            .content {}
+        > div {
 
             .name-input, .count-input, .contact-input {
                 outline: none;
@@ -135,11 +91,7 @@
                 height: 75%;
                 width: 75%;
                 
-                textarea {
-                    font-size: 1.5rem;
-                    outline: none;
-                    box-shadow: none;
-                }
+
             }
         }
 

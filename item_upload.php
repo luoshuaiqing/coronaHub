@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>post item page</title>
+    <title>upload item page</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -55,12 +55,13 @@
     </nav>
 
 
-    <form class="container-fluid" id="post-item-container" action="backend/item/create_item.php" method="POST" enctype="multipart/form-data">
+    <!-- the classname is post item due to the previous naming issue -->
+    <form class="container-fluid upload-form" id="post-item-container" action="backend/item/create_item.php" method="POST" enctype="multipart/form-data">
         <div class="header-nav">
             <h3 class="title-box">物品上传</h3>
         </div>
 
-        <div class="post-item-form">
+        <div class="post-item-form upload-form__content">
             <div class="name-box">
                 <span class="title">名称</span>
                 <div class="content"><input type="text" class="name-input" name="name"></div>
@@ -142,7 +143,7 @@
 
     <!-- bootstrap -->
     <script src="./bundle.js"></script>
-    <script src="js/post_item.js"></script>
+    <script src="js/item_upload.js"></script>
 </body>
 
 </html>
