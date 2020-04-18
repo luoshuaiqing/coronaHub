@@ -30,12 +30,16 @@ $('#btn-upload-another').click((e) => {
     e.preventDefault();
     if(uploadBtnCnt === 4) 
         return;
-        
-    $('#add-upload-box').append(`<div class="input-group content">
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" name='upload-photo'>
-        <label class="custom-file-label" for="upload-photo">上传</label>
-    </div>
-</div>`);
+    
     uploadBtnCnt += 1;
+
+    $('#add-upload-box').append(`
+        <div class="input-group content">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id='picture${uploadBtnCnt}'>
+                <label class="custom-file-label" for="upload-photo">上传</label>
+            </div>
+        </div>`
+    );
+    
 });

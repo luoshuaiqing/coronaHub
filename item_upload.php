@@ -102,31 +102,11 @@
                 <div id="add-upload-box">
                     <div class="input-group content">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="upload-photo" name="picture1">
+                            <input type="file" class="custom-file-input" name="picture1">
                             <label class="custom-file-label" for="upload-photo">上传</label>
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="input-group content">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="upload-photo">
-                        <label class="custom-file-label" for="upload-photo">上传</label>
-                    </div>
-                </div>
-                <div class="input-group content">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="upload-photo">
-                        <label class="custom-file-label" for="upload-photo">上传</label>
-                    </div>
-                </div>
-                <div class="input-group content">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="upload-photo">
-                        <label class="custom-file-label" for="upload-photo">上传</label>
-                    </div>
-                </div> -->
-                
                 
                 <button class="btn btn-lg btn-info" id="btn-upload-another">继续上传</button>
             </div>
