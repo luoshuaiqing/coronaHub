@@ -21,7 +21,7 @@
             </div>
 
             <div class="_nav__upload-box">
-                <a href="#" class="btn btn-lg btn-info">我要上传</a>
+                <a href="# " class="btn btn-lg btn-info">我要上传</a>
             </div>
         </div>
 

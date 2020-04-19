@@ -10,9 +10,33 @@
 		exit();
 	}
 
-	$user_id = 5; // hard code?
 	$name = $_POST["name"];
-	//$category = $_POST["category"];
+
+	$username = $_SESSION['username'];
+
+	echo $username;
+	echo "<hr>";
+
+    $sql_user = "SELECT * FROM user WHERE username = ?;";
+    $statement_user = $mysqli->prepare($sql_user);
+    $statement_user->bind_param("s",$username);
+    $execute_user = $statement_user->execute();
+    if(!$execute_user)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+
+    $result_user = $statement_user->get_result();
+    $user_id = 0; 
+    while($row = $result_user->fetch_assoc())
+    {
+    	$user_id = $row['user_id'];
+
+    }
+
+    echo $user_id;
+
 	$category = null;
 	if(isset($_POST['mask']) && !empty($_POST['mask']))
 	{
@@ -38,9 +62,9 @@
 	$timestamp = date("Y-m-d H:i:s");
 	$description = $_POST["description"];
 
-	echo "<hr>";
-	var_dump($_FILES);
-	echo "<hr>";
+	// echo "<hr>";
+	// var_dump($_FILES);
+	// echo "<hr>";
 
 	/* For Simplicity, Now only support uploading one file */
 	if  ($_FILES['picture1']['size']  ==  0)  
@@ -56,16 +80,16 @@
 	if  (!in_array($extension,  $allowedExtension)) 
 	{
 		$error = "Supported Extensions are: png, jpg, jpeg, bmp and gif";
-		// header("Location: ../../post_item.php?error=". $error);
-		// exit();
+		header("Location: ../../item_upload.php?error=". $error);
+		exit();
 	} 
 	
 	//  check  if  this  is  a  valid  upload
 	if  (!is_uploaded_file($_FILES['picture1']['tmp_name']))   
 	{
 		$error = "Not a valid file upload";
-		// header("Location: ../../post_item.php?error=". $error); 
-		// exit();
+		header("Location: ../../item_upload.php?error=". $error); 
+		exit();
 	} 
 	
 	/* Figure out the next available id to use */
@@ -87,8 +111,8 @@
 	if(!move_uploaded_file($_FILES['picture1']['tmp_name'],  $path1))
 	{
 	 	$error = "Cannot process the uploaded file.";
-		// header("Location: ../../post_item.php?error=". $error); 
-		// exit();
+		header("Location: ../../item_upload.php?error=". $error); 
+		exit();
 	}
 
 	$path2 = null; // null for now

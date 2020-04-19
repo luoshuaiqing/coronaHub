@@ -1,3 +1,55 @@
+<?php 
+    require "backend/config/config.php";
+
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if($mysqli->connect_errno)
+    {
+        echo $mysqli->connect_error;
+        exit();
+    }
+
+
+    $category = $_GET['category'];
+
+    $sql_prepared = "SELECT * FROM item WHERE category = ?;";
+    $statement = $mysqli->prepare($sql_prepared);
+    $statement->bind_param("s",$category);
+
+    $execute_item = $statement->execute();
+    if(!$execute_item)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+    $result_item = $statement->get_result();
+    $statement->close();
+
+    $result_arr = array();
+
+    while($row = $result_item->fetch_assoc())
+    {
+        $user_id = $row['user_id'];
+        $sql_user = "SELECT * FROM user WHERE user_id = " . $user_id . ";";
+        $result_user = $mysqli->query($sql_user);
+        if(!$result_user)
+        {
+            echo $mysqli->error;
+            exit();
+        }
+        while($row_user = $result_user->fetch_assoc())
+        {
+            $row['username'] = $row_user['username'];
+            $row['email'] = $row_user['email']; // email for now, change to wechat_id later
+        }
+        array_push($result_arr,$row);
+    }
+
+
+    // can use $result_item to access all the items in a specific category (For post_item.html)
+    
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -21,7 +73,7 @@
             </div>
 
             <div class="_nav__upload-box">
-                <a href="#" class="btn btn-lg btn-info">我要上传</a>
+                <a href="item_upload.php" class="btn btn-lg btn-info">我要上传</a>
             </div>
         </div>
 
@@ -59,7 +111,7 @@
     <form class="container-fluid" id="items-container" method="GET" action="#">
 
         <div class="header-nav">
-            <h3 class="title-box">回国</h3>
+            <h3 class="title-box"><?php echo $_GET['category']; ?></h3>
             
             <div class="search-box">
                 <label for="search-input">搜索:</label>
@@ -91,359 +143,47 @@
         </div>
 
         <div class="items-box-container row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-3">
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
+            <?php foreach($result_arr as $row) { ?>
+                <div>
+                    <div class="item-box--outer">
+                        <div class="item-box">
+                            <div class="img-box">
+                                <?php $str = $row['path1'];
+                                    $real_path = substr($str,6);
+                                ?>
+                                <img src="<?php echo $real_path; ?>" alt="mask img">
+                            </div>
+                            <span class="name">
+                                商品名称:&nbsp;<span class="name-content"><?php echo $row['name']; ?></span>
+                            </span>
+                            <span class="count">
+                                数量:&nbsp;<span class="count-content"><?php echo $row['amount']; ?></span>
+                            </span>
+                            <span class="seller">
+                                卖家:&nbsp;
+                                <span class="seller-content"> 
+                                    <?php echo $row['username']; ?>
+                                 </span>
+                            </span>
+
+                            <span class="contact">
+                                联系方式:&nbsp;<span class="contact-content">
+                                    <?php echo $row['email']; ?>
+                                </span>
+                            </span>
+
+                            <span class="intro">
+                                简介:&nbsp;<span class="intro-content">
+                                    <?php echo $row['description']; ?>
+                                </span>
+                            </span>
+                       
                         </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
                     </div>
                 </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
 
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cu.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="item-box--outer">
-                    <div class="item-box">
-                        <div class="img-box">
-                            <img src="/assets/mask.jpeg" alt="mask img">
-                        </div>
-                        <span class="name">
-                            商品名称:&nbsp;<span class="name-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="count">
-                            数量:&nbsp;<span class="count-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-                        <span class="seller">
-                            卖家:&nbsp;<span class="seller-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="contact">
-                            联系方式:&nbsp;<span class="contact-content">Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                        <span class="intro">
-                            简介:&nbsp;<span class="intro-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </span>
-
-                    </div>
-                </div>
-            </div>
-            
-
+            <?php } ?>  
+              <!-- end of for each loop -->
         </div>
 
     </form>
