@@ -61,7 +61,7 @@
       <img src="assets/nav-discontaminate.png" alt="discontaminate img">
     </div>
     <div class="header-box">
-     <h6><a href="items.php?category=daily">日常用品</a></h6>
+     <h6><a href="items.php?category=necessity">日常用品</a></h6>
       <img src="assets/nav-necessity.png" alt="necessity img">
     </div>
     <div class="header-box">

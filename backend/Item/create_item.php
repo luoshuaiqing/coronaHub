@@ -35,7 +35,6 @@
 
     }
 
-    echo $user_id;
 
 	$category = null;
 	if(isset($_POST['mask']) && !empty($_POST['mask']))
@@ -46,9 +45,9 @@
 	{
 		$category = 'goggle';
 	}
-	else if(isset($_POST['discontaminate']) && !empty($_POST['discontaminate']))
+	else if(isset($_POST['sanitizer']) && !empty($_POST['sanitizer']))
 	{
-		$category = 'discontaminate';
+		$category = 'sanitizer';
 	}
 	else if(isset($_POST['necessity']) && !empty($_POST['necessity']))
 	{
@@ -56,22 +55,40 @@
 	}
 	else
 	{
-		// check error
+		$error = "No category selected";// check error
+		header("Location: ../../item_upload.php");
+		exit();
+	}
+	if(!isset($_POST['amount']) || empty($_POST['amount']))
+	{
+		$error = "Please enter an amount to proceed!";
+		header("Location: ../../item_upload.php");
+		exit();
+	}
+	if(!is_numeric($_POST['amount']))
+	{
+		$error = "Amount needs to be a number!";
+		header("Location: ../../item_upload.php");
+		exit();
 	}
 	$amount = $_POST["amount"];
+	if($amount<=0 || $amount>100)
+	{
+		$error = "Amount needs to be a number from 1 to 100!";
+		header("Location: ../../item_upload.php");
+		exit();
+	}
 	$timestamp = date("Y-m-d H:i:s");
+
 	$description = $_POST["description"];
 
-	// echo "<hr>";
-	// var_dump($_FILES);
-	// echo "<hr>";
 
 	/* For Simplicity, Now only support uploading one file */
 	if  ($_FILES['picture1']['size']  ==  0)  
 	{
 		$error = "Please upload a picture.";
-		// header("Location: ../../post_item.php?error=". $error);
-		// exit();
+		header("Location: ../../post_item.php?error=". $error);
+		exit();
 	}
 	
 	//  check  if  file  type  is  allowed 
@@ -130,5 +147,5 @@
 	}
 	$statement_insert->close();
 	$mysqli->close();
-	//header("Location: #"); // goto the according items.php (embed category in url)
+	header("Location: ../../index.php?message=upload success!"); // goto the according items.php (embed category in url)
 ?>

@@ -1,4 +1,9 @@
-<!doctype html>
+<?php 
+    require "backend/config/config.php";
+    echo $_SESSION['username'];
+    echo "<hr>";
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,15 +61,15 @@
 
 
     <!-- the classname is post item due to the previous naming issue -->
-    <form class="container-fluid upload-form" id="add-post-container" action="#" method="POST" enctype="multipart/form-data">
+    <form class="container-fluid upload-form" id="add-post-container" action="backend/post/create_post.php" method="POST" enctype="multipart/form-data">
         <div class="header-nav">
             <h3 class="title-box">上传帖子</h3>
         </div>
 
         <div class="add-post-form upload-form__content">
             <div class="post-title-box">
-                <span class="title">标题</span>
-                <div class="content"><input type="text" class="post-title-input" name="post-title-input"></div>
+                <span class="title"> 标题</span>
+                <div class="content"><input type="text" class="post-title-input" name="headline"></div>
             </div>
             
             <div class="post-category-box">
@@ -86,7 +91,7 @@
             <div class="post-content-box">
                 <span class="title">帖子内容</span>
                 <div class="content input-group">
-                    <textarea class="form-control" name="post-content-input"></textarea>
+                    <textarea class="form-control" name="content"></textarea>
                 </div>
             </div>
 

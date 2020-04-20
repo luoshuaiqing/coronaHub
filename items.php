@@ -50,7 +50,7 @@
 ?>
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -187,14 +187,6 @@
         </div>
 
     </form>
-
-
-
-
-
-
-
-
 
     <script src="./bundle.js"></script>
 </body>
