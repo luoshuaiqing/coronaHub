@@ -159,7 +159,7 @@
                         <span>
                             <svg>
                                 <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
+                            </svg>
                               201</span>
                     </div>
                 </div>

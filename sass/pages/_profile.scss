@@ -1,0 +1,180 @@
+#profile-container {
+    padding: 0 3rem;
+    height: calc(100vh - 2 * #{$height-nav-index});
+
+    .container-body {
+        margin-top: 2rem;
+        display: flex;
+        
+    }
+
+    .container--left {
+        margin-right: 7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
+        
+
+        img {
+            width: 15rem;
+            height: 15rem;
+            border-radius: 50%;
+        }
+
+        &__row {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+
+            svg {
+                width: 3.5rem;
+                height: 3.5rem;
+                margin-right: 1rem;
+            }
+
+            span {
+                font-size: 1.6rem;
+            }
+        }
+    }
+
+    .container--right {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        
+        
+        
+        &-top {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            
+            .profile-info-container {
+                width: 25rem;
+                // background-color: rgba(23, 162, 184, 0.2);
+                padding: .5rem 1rem;
+                margin-right: 5rem;
+                border: 1px solid black;
+
+                .header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    h5 {
+                        margin-bottom: 0;
+                    }
+
+                    .fix {
+                        display: flex;
+                        align-items: center;
+                        
+                        svg {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            margin-right: .3rem;
+                        }
+                        span {
+                            font-size: 1.6rem;
+
+                            a {
+                                color: black;
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    font-size: 1.2rem;
+                    margin-top: 2rem;
+
+                    > *:not(:last-child) {
+                        margin-bottom: .5rem;
+                    }
+                }
+            }
+
+            .my-items {
+                padding: .5rem 1rem;
+                flex: 1;
+                
+                // give it a width then it can overflow
+                width: 1rem;
+                overflow: scroll;
+
+                h5 {
+                    margin-bottom: 0;
+                }
+
+                .img-container {
+                    margin-top: 1rem;
+                    display: flex;
+
+                    .img-box {
+                        
+                        &:not(:last-child) {
+                            margin-right: 1.5rem;
+                        }
+
+                        border: 1px solid black;
+                        padding: .5rem 1rem;
+                        font-size: 1.2rem;
+    
+                        img {
+                            width: 10rem;
+                            height: 12rem;
+                        }
+
+                        > *:not(:last-child) {
+                            margin-bottom: .5rem;
+                        }
+
+                        > :last-child {
+                            text-align: right;
+
+                            a {
+                                color: gray;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        &-bottom {
+            margin-top: 2rem;
+            flex: 1;
+
+            table {
+                font-size: 1.6rem;
+
+
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+                }
+
+                .icon-container {
+
+
+                    svg {
+                        margin-right: .5rem;
+                    }
+                }
+
+                svg.edit {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+}

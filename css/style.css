@@ -769,3 +769,102 @@ nav {
   display: flex; }
   #edit-profile-container .edit-profile-form .bottom-bar > button:first-child {
     margin-right: 7rem; }
+
+#profile-container {
+  padding: 0 3rem;
+  height: calc(100vh - 2 * 6rem); }
+  #profile-container .container-body {
+    margin-top: 2rem;
+    display: flex; }
+  #profile-container .container--left {
+    margin-right: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; }
+    #profile-container .container--left img {
+      width: 15rem;
+      height: 15rem;
+      border-radius: 50%; }
+    #profile-container .container--left__row {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem; }
+      #profile-container .container--left__row svg {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-right: 1rem; }
+      #profile-container .container--left__row span {
+        font-size: 1.6rem; }
+  #profile-container .container--right {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap; }
+    #profile-container .container--right-top {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap; }
+      #profile-container .container--right-top .profile-info-container {
+        width: 25rem;
+        padding: .5rem 1rem;
+        margin-right: 5rem;
+        border: 1px solid black; }
+        #profile-container .container--right-top .profile-info-container .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; }
+          #profile-container .container--right-top .profile-info-container .header h5 {
+            margin-bottom: 0; }
+          #profile-container .container--right-top .profile-info-container .header .fix {
+            display: flex;
+            align-items: center; }
+            #profile-container .container--right-top .profile-info-container .header .fix svg {
+              width: 1.5rem;
+              height: 1.5rem;
+              margin-right: .3rem; }
+            #profile-container .container--right-top .profile-info-container .header .fix span {
+              font-size: 1.6rem; }
+              #profile-container .container--right-top .profile-info-container .header .fix span a {
+                color: black; }
+        #profile-container .container--right-top .profile-info-container .content {
+          font-size: 1.2rem;
+          margin-top: 2rem; }
+          #profile-container .container--right-top .profile-info-container .content > *:not(:last-child) {
+            margin-bottom: .5rem; }
+      #profile-container .container--right-top .my-items {
+        padding: .5rem 1rem;
+        flex: 1;
+        width: 1rem;
+        overflow: scroll; }
+        #profile-container .container--right-top .my-items h5 {
+          margin-bottom: 0; }
+        #profile-container .container--right-top .my-items .img-container {
+          margin-top: 1rem;
+          display: flex; }
+          #profile-container .container--right-top .my-items .img-container .img-box {
+            border: 1px solid black;
+            padding: .5rem 1rem;
+            font-size: 1.2rem; }
+            #profile-container .container--right-top .my-items .img-container .img-box:not(:last-child) {
+              margin-right: 1.5rem; }
+            #profile-container .container--right-top .my-items .img-container .img-box img {
+              width: 10rem;
+              height: 12rem; }
+            #profile-container .container--right-top .my-items .img-container .img-box > *:not(:last-child) {
+              margin-bottom: .5rem; }
+            #profile-container .container--right-top .my-items .img-container .img-box > :last-child {
+              text-align: right; }
+              #profile-container .container--right-top .my-items .img-container .img-box > :last-child a {
+                color: gray;
+                font-weight: bold; }
+    #profile-container .container--right-bottom {
+      margin-top: 2rem;
+      flex: 1; }
+      #profile-container .container--right-bottom table {
+        font-size: 1.6rem; }
+        #profile-container .container--right-bottom table svg {
+          width: 2rem;
+          height: 2rem; }
+        #profile-container .container--right-bottom table .icon-container svg {
+          margin-right: .5rem; }
+        #profile-container .container--right-bottom table svg.edit:hover {
+          cursor: pointer; }
