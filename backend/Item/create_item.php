@@ -56,26 +56,26 @@
 	else
 	{
 		$error = "No category selected";// check error
-		header("Location: ../../item_upload.php");
+		header("Location: ../../item_upload.php?error=".$error);
 		exit();
 	}
 	if(!isset($_POST['amount']) || empty($_POST['amount']))
 	{
 		$error = "Please enter an amount to proceed!";
-		header("Location: ../../item_upload.php");
+		header("Location: ../../item_upload.php?error=".$error);
 		exit();
 	}
 	if(!is_numeric($_POST['amount']))
 	{
 		$error = "Amount needs to be a number!";
-		header("Location: ../../item_upload.php");
+		header("Location: ../../item_upload.php?error=".$error);
 		exit();
 	}
 	$amount = $_POST["amount"];
 	if($amount<=0 || $amount>100)
 	{
 		$error = "Amount needs to be a number from 1 to 100!";
-		header("Location: ../../item_upload.php");
+		header("Location: ../../item_upload.php?error=".$error);
 		exit();
 	}
 	$timestamp = date("Y-m-d H:i:s");

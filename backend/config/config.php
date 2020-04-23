@@ -5,5 +5,5 @@
 	define("DB_USER","joinmeus_db_user");
 	define("DB_PASS","Lsq987069!");
 	define("DB_NAME","joinmeus_corona_db");
-	define("DEST","../../assets/");
+	define("DEST","../../storage/");
 ?>

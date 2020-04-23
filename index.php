@@ -40,7 +40,7 @@
         </div>
 
       <div class="_nav__upload-box">
-        <a href="item_upload.php" class="btn btn-lg btn-info">我要上传</a>
+        <a href="index.php?error=请先登录" class="btn btn-lg btn-info">我要上传</a>
       </div>
     <?php endif; ?>
     </div>
