@@ -24,13 +24,13 @@
           <input
             class="textbox"
             type="email"
-            placeholder="邮箱"
+            placeholder="邮箱/用户名"
             id="email"
             pattern="^\S+$"
             name="email"
             required
           />
-          <label for="email">邮箱</label>
+          <label for="email">邮箱/用户名</label>
           <span id="email-error" class="text-danger text-small error"></span>
         </div>
 

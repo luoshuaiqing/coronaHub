@@ -7,7 +7,6 @@
 		exit();
 	}
 	
-
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	// debug
 	var_dump($_POST);
@@ -123,7 +122,7 @@
 
 	$statement_insert = $mysqli->prepare($sql_prepared_insert);
 
-	var_dump($sql_prepared_insert);
+	//var_dump($sql_prepared_insert);
 	$statement_insert->bind_param("issssssss",$user_id,$category,$headline,$content,$path1,$path2,$timestamp,$timestamp,$reply_time);
 
 	$executed_insert = $statement_insert->execute();

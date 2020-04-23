@@ -15,7 +15,7 @@
 <body>
   <nav class="_nav">
     <div class="_nav__box--left">
-      <h4>coronaHub</h4>
+        <h4><a href = "index.php" style = "text-decoration:none; color:black;">coronaHub</a></h4>
     </div>
 
     <div class="_nav__box--right">
