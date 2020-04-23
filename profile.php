@@ -1,5 +1,5 @@
 <?php 
-
+    require "backend/config/config.php";
 ?>
 
 <!DOCTYPE html>

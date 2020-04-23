@@ -1,4 +1,58 @@
-<!doctype html>
+<?php 
+    require "backend/config/config.php";
+
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if($mysqli->connect_errno)
+    {
+      echo $mysqli->connect_error;
+      exit();
+    }
+
+
+    $category = $_GET['category'];
+
+    $sql_prepared = "SELECT * FROM post WHERE category = ?;";
+    $statement = $mysqli->prepare($sql_prepared);
+    $statement->bind_param("s",$category);
+
+    $execute_item = $statement->execute();
+    if(!$execute_item)
+    {
+      echo $mysqli->error;
+      exit();
+    }
+
+    $result_item = $statement->get_result();
+
+    $result_arr = array();
+
+    while($row = $result_item->fetch_assoc())
+    {
+        $user_id = $row['author_id'];
+        $sql_user = "SELECT * FROM user WHERE user_id = " . $user_id . ";";
+        $result_user = $mysqli->query($sql_user);
+        if(!$result_user)
+        {
+            echo $mysqli->error;
+            exit();
+        }
+        while($row_user = $result_user->fetch_assoc())
+        {
+            $row['username'] = $row_user['username'];
+
+            $row['contribution'] = $row_user['contribution'];
+            // email for now, change to wechat_id later
+        }
+        array_push($result_arr,$row);
+    }
+
+    $statement->close();
+    $mysqli->close();
+
+    $cnt = 1;
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -75,7 +129,15 @@
 
     <form class="container-fluid" id="posts-container" action="#" method="GET">
         <div class="header-nav">
-            <h3 class="title-box">回国</h3>
+            <h3 class="title-box">
+              <?php 
+                if($category=="back") 
+                    echo "回国";
+                else 
+                    echo "留守";
+              ?>
+
+            </h3>
             
             <div class="search-box">
                 <label for="search-input">搜索:</label>
@@ -109,7 +171,7 @@
         <div class="posts-table">
             <div class="posts-table__header">
                 <div class="post-button-container">
-                    <a href="#" class="btn btn-lg btn-outline-dark">发帖</a>
+                    <a href="post_add.php?category=<?php echo $category;?>" class="btn btn-lg btn-outline-dark">发帖</a>
                 </div>
                 <div class="post-info-container">
                     <h6>发布时间</h6>
@@ -120,37 +182,6 @@
             </div>
 
             <div class="posts-table__content">
-                <div class="posts-table__row top">
-                    <div class="title-container ">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
                 <div class="posts-table__row top">
                     <div class="title-container">
                         <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
@@ -213,214 +244,59 @@
                               201</span>
                     </div>
                 </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
-                <div class="posts-table__row">
-                    <div class="title-container">
-                        <a href="#" class="title">1. 震惊！洛杉矶大华惊现哥斯拉</a>
-                        <span class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com
-                        </span>
-                    </div>
-                    <div class="post-info-container">
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
-                              </svg>
-                            2020/2/13
-                        </span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-profile"></use>
-                              </svg>
-                              同同同</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                              </svg>
-                              17</span>
-                        <span>
-                            <svg>
-                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                              </svg>
-                              201</span>
-                    </div>
-                </div>
 
-                
+
+                <!-- Below are user posts -->
+                <?php foreach($result_arr as $row) { ?>
+                  <div class="posts-table__row">
+                      <div class="title-container">
+                          <a href="post_view.php?id=<?php echo $row['post_id']; ?>" class="title">
+                            <?php 
+                              echo $cnt;
+                              echo ".";
+                              $cnt = $cnt+1;
+                              echo $row['headline'];
+                            ?>
+
+                          </a>
+                          <span class="content">
+                            <?php echo $row['content']; ?>
+                          </span>
+                      </div>
+                      <div class="post-info-container">
+                          <span>
+                              <svg>
+                                  <use xlink:href="/assets/sprite.svg#icon-calendar"></use>
+                                </svg>
+                              <?php echo $row['publish_time']; ?>
+                          </span>
+                          <span>
+                              <svg>
+                                  <use xlink:href="/assets/sprite.svg#icon-profile"></use>
+                                </svg>
+                                <?php echo $row['username']; ?>
+                          </span>
+                          <span>
+                              <svg>
+                                  <use xlink:href="/assets/sprite.svg#icon-eye"></use>
+                                </svg>
+                                <?php echo $row['view']; ?>
+                          </span>
+                          <span>
+                              <svg>
+                                  <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
+                                </svg>
+                              <?php echo $row['contribution']; ?>  
+                          </span>
+                      </div>
+                  </div>
+                <?php }?>
                 
             </div>
 
         </div> 
 
-
-
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <script src="./bundle.js"></script>

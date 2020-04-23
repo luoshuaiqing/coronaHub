@@ -99,8 +99,7 @@ else
 			}
 			$statement_final->close();
 			$mysqli->close();
-			echo "wtf";
-			echo "<hr>";
+			
 		}
 		
 	}

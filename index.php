@@ -22,7 +22,7 @@
        <?php if(isset($_SESSION['username']) && !empty($_SESSION['username'])) : ?>
       <div class="_nav__user-box">
          <img src="/assets/user-photo.jpg" alt="user photo">
-                <h6><span>同同同</span></h6>
+         <h6><span><a href = "profile.php"><?php echo $_SESSION['username']; ?> </a></span></h6>
       </div>
       <div class="_nav__upload-box">
         <a href="item_upload.php" class="btn btn-lg btn-info mr-3">我要上传</a>
@@ -65,11 +65,11 @@
       <img src="assets/nav-necessity.png" alt="necessity img">
     </div>
     <div class="header-box">
-      <h6>回国</h6>
+      <h6><a href = "posts.php?category=back">回国</a></h6>
       <img src="assets/nav-back.png" alt="back img">
     </div>
     <div class="header-box">
-      <h6>留守</h6>
+      <h6><a href = "posts.php?category=stay">留守</a></h6>
       <img src="assets/nav-stay.png" alt="stay img">
     </div>
   </nav>
