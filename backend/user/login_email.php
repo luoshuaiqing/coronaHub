@@ -1,15 +1,16 @@
 <?php
 require '../config/config.php';
 // If user is logged in, redirect user to home page. Don't allow them to see the login page.
-if( false)//isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'])
 {
 	header('Location: ../../index.php'); // go to home page
 }
 else 
 {
+	/* Attention: Email can be noth email or username! */
 	if(!isset($_POST['email']) || empty($_POST['email']))
 	{
-		$error = "Please enter an email address.";
+		$error = "Please enter an email address or username.";
 	}
 	else if(!isset($_POST['password']) || empty($_POST['password']))
 	{
@@ -18,6 +19,7 @@ else
 	// If user attempted to log in (aka submitted the form)
 	else
 	{
+		$use_email = true;
 		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 		if($mysqli->connect_errno) {
@@ -25,29 +27,53 @@ else
 			exit();
 		}
 
-        $email = $_POST["email"];
+        $email = $_POST["email"]; 
         $password = $_POST["password"];
             //hash user input of password
         $password = hash("sha256", $password);
 
-        $sql="SELECT * FROM user WHERE email = ?;"; 
-        $statement=$mysqli->prepare($sql);
-        $statement->bind_param("s",$email);
-        $executedEmail=$statement->execute();
+        $sql_email="SELECT * FROM user WHERE email = ?;"; 
+        $statement_email=$mysqli->prepare($sql_email);
+        $statement_email->bind_param("s",$email);
+        $executedEmail=$statement_email->execute();
         if(!$executedEmail){
             echo $mysqli->error();
             exit();
         }
-        $results=$statement->get_result();
-        if($results->num_rows==0)
+        $result_email = $statement_email->get_result();
+        $statement_email->close();
+
+        if($result_email->num_rows==0) // if we didn't get the result via email, then try username instead
         {
-			$error = "邮箱不存在";
+        	$use_email = false;
+        	$sql_username = "SELECT * FROM user WHERE username = ?;";
+        	$statement_username = $mysqli->prepare($sql_username);
+        	$statement_username->bind_param("s",$email);
+        	$execute_username = $statement_username->execute();
+
+        	if(!$execute_username)
+        	{
+        		echo $mysqli->error;
+        		exit();
+        	}
+        	
+        	$result_username = $statement_username->get_result();
+        	if($result_username->num_rows==0)
+        	{
+				$error = "邮箱或用户名不存在!";
+			}
+			$statement_username->close();
+			
 		}
-		else
+		if(!isset($error) && empty($error))
 		{
-			$statement->close();
-			$sql_final="SELECT * FROM user 
+			$sql_final = "SELECT * FROM user 
+                       WHERE username=? AND password=?;";
+			if($user_email==true){
+				$sql_final="SELECT * FROM user 
                        WHERE email=? AND password=?;";
+			}
+		
 			$statement_final=$mysqli->prepare($sql_final);
             $statement_final->bind_param("ss",$email,$password);
             $executed_final=$statement_final->execute();
@@ -73,6 +99,8 @@ else
 			}
 			$statement_final->close();
 			$mysqli->close();
+			echo "wtf";
+			echo "<hr>";
 		}
 		
 	}
