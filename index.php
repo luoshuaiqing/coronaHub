@@ -12,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>index page</title>
   <link rel="stylesheet" href="/css/style.css">
+  
 </head>
 
 <body>
@@ -87,7 +88,15 @@
           <svg>
             <use xlink:href="/assets/sprite.svg#icon-arrow-left"></use>
           </svg>
+
+          <!-- php while start -->
           <img src="/assets/mask.jpeg" alt="mask img">
+
+          <img src="/assets/nav-glass.png" alt="mask img" class="hidden">
+          <img src="/assets/nav-back.png" alt="mask img" class="hidden">
+          <img src="/assets/nav-stay.png" alt="mask img" class="hidden">
+          <!-- php while end -->
+
           <svg>
             <use xlink:href="/assets/sprite.svg#icon-arrow-right"></use>
           </svg>
@@ -202,12 +211,10 @@
 
 
 
-
-
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <script src="./bundle.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>
