@@ -91,10 +91,6 @@
 
           <!-- php while start -->
           <img src="/assets/mask.jpeg" alt="mask img">
-
-          <img src="/assets/nav-glass.png" alt="mask img" class="hidden">
-          <img src="/assets/nav-back.png" alt="mask img" class="hidden">
-          <img src="/assets/nav-stay.png" alt="mask img" class="hidden">
           <!-- php while end -->
 
           <svg>
