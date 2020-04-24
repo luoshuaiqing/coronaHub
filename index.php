@@ -1,7 +1,50 @@
 <?php 
   require "backend/config/config.php";
 
-  
+  function date_sort($a,$b)
+  {
+    return $a['timestamp'] > $b['timestamp'];
+  }
+
+  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  if($mysqli->connect_errno)
+  {
+      echo $mysqli->connect_error;
+      exit();
+  }
+
+
+  $sql_item = "SELECT * FROM item WHERE main_page = 1;";
+  $execute_item = $mysqli->query($sql_item);
+  if(!$execute_item)
+  {
+      echo $mysqli->error;
+      exit();
+  }
+   
+  $item_arr = array(); 
+
+  while($row = $result_item->fetch_assoc())
+  {
+      $user_id = $row['user_id'];
+      $sql_user = "SELECT * FROM user WHERE user_id = " . $user_id . ";";
+      $result_user = $mysqli->query($sql_user);
+      if(!$result_user)
+      {
+          echo $mysqli->error;
+          exit();
+      }
+      while($row_user = $result_user->fetch_assoc())
+      {
+          $row['username'] = $row_user['username'];
+          $row['email'] = $row_user['email']; // email for now, change to wechat_id later
+      }
+      array_push($item_arr,$row);
+  }
+
+  // user item_arr() to access the items in the main page
+
+
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +133,9 @@
           </svg>
 
           <!-- php while start -->
-          <img src="/assets/mask.jpeg" alt="mask img">
+        
+           <img src="/assets/mask.jpeg" alt="mask img">
+           
           <!-- php while end -->
 
           <svg>

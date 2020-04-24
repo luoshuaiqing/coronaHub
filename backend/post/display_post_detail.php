@@ -44,16 +44,16 @@
 	*/
 
 	$sql_prepared_comments = "SELECT * FROM post_comment WHERE category = ?, post_id = ?;";
-	$statememnt_comments = $mysqli->prepare($sql_prepared_comments);
-	$statememnt_comments->bind_param("si",$category,$post_id);
+	$statement_comments = $mysqli->prepare($sql_prepared_comments);
+	$statement_comments->bind_param("si",$category,$post_id);
 
-	$executed_comments = $statement->execute();
+	$executed_comments = $statement_comments->execute();
 	if(!$executed_comments)
 	{
 		echo $mysqli->error;
 		exit();
 	}
-	$result_comments = $statement->get_result();
+	$result_comments = $statement_comments->get_result();
 	$statement_comments->close();
 
 	usort($result_comments,"date_sort"); // sort the comment by date (latest first)
