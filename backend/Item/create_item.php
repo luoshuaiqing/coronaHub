@@ -32,7 +32,7 @@
     while($row = $result_user->fetch_assoc())
     {
     	$user_id = $row['user_id'];
-
+    	$contribution = $row['contribution'];
     }
 
 
@@ -81,6 +81,30 @@
 	$timestamp = date("Y-m-d H:i:s");
 
 	$description = $_POST["description"];
+
+	$main_page = 0;
+
+	if(isset($_POST['publish']) && !empty($_POST['publish']))
+	{
+		if($contribution < 5)
+		{
+			$error = "Not enough contribution! Cannot publish in main page!";
+			header("Location: ../../item_upload.php?error=". $error); 
+			exit();
+		}
+		$contribution = $contribution - 5;
+		$sql_update = "UPDATE user SET contribution = ? WHERE user_id = ?;";
+		$statement_update = $mysqli->prepare($sql_update);
+		$statement_update->bind_param("ii",$contribution,$user_id);
+		$execute_update = $statement_update->execute();
+		if(!$execute_update)
+		{
+			echo $mysqli->error;
+			exit();
+		}
+
+		$main_page = 1;
+	}
 
 
 	/* For Simplicity, Now only support uploading one file */
@@ -135,9 +159,9 @@
 	$path2 = null; // null for now
 	
 
-	$sql_prepared_insert = "INSERT INTO item(user_id,name,category,amount,description,timestamp,path1,path2) VALUES(?,?,?,?,?,?,?,?);";
+	$sql_prepared_insert = "INSERT INTO item(user_id,name,category,amount,description,timestamp,path1,path2,main_page) VALUES(?,?,?,?,?,?,?,?,?);";
 	$statement_insert = $mysqli->prepare($sql_prepared_insert);
-	$statement_insert->bind_param("ississss",$user_id,$name,$category,$amount,$description,$timestamp,$path1,$path2);
+	$statement_insert->bind_param("ississssi",$user_id,$name,$category,$amount,$description,$timestamp,$path1,$path2,$main_page);
 
 	$executed_insert = $statement_insert->execute();
 	if(!$executed_insert)
@@ -145,6 +169,9 @@
 		echo $mysqli->error;
 		exit();
 	}
+
+	// deal with publish
+	
 	$statement_insert->close();
 	$mysqli->close();
 	header("Location: ../../index.php?message=upload success!"); // goto the according items.php (embed category in url)

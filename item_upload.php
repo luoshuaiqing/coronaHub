@@ -145,7 +145,7 @@
             </div>
             <div class="bottom-bar">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="bottom-checkbox">
+                    <input type="checkbox" class="form-check-input" id="bottom-checkbox" name="publish">
                     <label class="form-check-label" for="bottom-checkbox">发布在首页（消耗贡献值)</label>
                 </div>
                 <button class="btn btn-lg btn-outline-info btn-cancel">取消</button>
