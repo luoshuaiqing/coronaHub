@@ -128,40 +128,45 @@
       <div class="box--1">
         <h4 class="header">头条物资</h4>
 
-        <div class="img-box">
-          <svg>
-            <use xlink:href="/assets/sprite.svg#icon-arrow-left"></use>
-          </svg>
+        <?php foreach($item_arr as $row) { ?>
+          <div class="img-box">
+            <svg>
+              <use xlink:href="/assets/sprite.svg#icon-arrow-left"></use>
+            </svg>
 
-          <!-- php while start -->
-        
-           <img src="/assets/mask.jpeg" alt="mask img">
-           
-          <!-- php while end -->
+            <!-- php while start -->
+          
+             <img src="<?php echo $row['path1']; ?>" alt="mask img">
+             
+            <!-- php while end -->
 
-          <svg>
-            <use xlink:href="/assets/sprite.svg#icon-arrow-right"></use>
-          </svg>
-        </div>
+            <svg>
+              <use xlink:href="/assets/sprite.svg#icon-arrow-right"></use>
+            </svg>
+          </div>
 
-        <div class="content-box">
-          <div>
-            <span class="content-box__header">商品名称:</span>
-            <span>可爱的口罩</span>
+          <div class="content-box">
+            <div>
+              <span class="content-box__header">商品名称:</span>
+              <span><?php echo $row['name']; ?></span>
+            </div>
+            <div>
+              <span class="content-box__header">卖家:</span>
+              <span><?php echo $row['username']; ?></span>
+            </div>
+            <div>
+              <span class="content-box__header">数量:</span>
+              <span><?php echo $row['amount']; ?></span>
+            </div>
+            <div>
+              <span class="content-box__header">联系方式:</span>
+              <span><?php echo $row['email']; ?></span>
+            </div>
           </div>
-          <div>
-            <span class="content-box__header">卖家:</span>
-            <span>同同同</span>
-          </div>
-          <div>
-            <span class="content-box__header">数量:</span>
-            <span>110</span>
-          </div>
-          <div>
-            <span class="content-box__header">联系方式:</span>
-            <span>1367172498127</span>
-          </div>
-        </div>
+         <?php } ?> 
+
+
+
       </div>
 
     </div>

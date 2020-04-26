@@ -169,7 +169,7 @@
                         <div class="img-container">
                             <?php while($row_item = $result_item->fetch_assoc()): ?>
                             <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
+                                <img src="<?php echo $row_item['path1']; ?>" alt="mask img">
                                 <div>商品名称:<?php echo $row_item["name"] ?></div>
                                 <div>数量:<?php echo $row_item["amount"] ?></div>
                                 <div>类别：<?php echo $row_item["category"] ?></div>>
