@@ -119,9 +119,24 @@ else {
 			}
 
 			var_dump("success");
-			$mysqli->close();
+			
 			$_SESSION['username'] = $username;
+			$sql_id="SELECT * FROM user WHERE username =?;";
+           $statement_id=$mysqli->prepare($sql_id);
+           $statement_id->bind_param("s",$_SESSION['username']);
+           $execute_id = $statement_id->execute();
+          if(!$execute_id)
+          {
+            echo $mysqli->error;
+            exit();
+          }
+
+           $result_id = $statement_id->get_result();
+           $row_id =$result_id->fetch_assoc();
+           $user_id=$row_id['user_id'];
+           $_SESSION['user_id']=$user_id;
 			$_SESSION['logged_in'] = true;
+			$mysqli->close();
 			header("Location: ../../index.php");
 	  	}
     }

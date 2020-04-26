@@ -15,8 +15,8 @@
 
 
   $sql_item = "SELECT * FROM item WHERE main_page = 1;";
-  $execute_item = $mysqli->query($sql_item);
-  if(!$execute_item)
+  $result_item = $mysqli->query($sql_item);
+  if(!$result_item)
   {
       echo $mysqli->error;
       exit();
@@ -92,6 +92,7 @@
     </div>
 
   </nav>
+
 
   <nav class="nav-secondary">
     <div class="header-box">

@@ -1,5 +1,36 @@
 <?php 
     require "backend/config/config.php";
+     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if($mysqli->connect_errno)
+    {
+        echo $mysqli->connect_error;
+        exit();
+    }
+    
+    $sql_user="SELECT * FROM user WHERE user_id =" . $_SESSION['user_id'] . ";";
+    $result_user = $mysqli->query($sql_user);
+    if(!$result_user)
+    {
+      echo $mysqli->error;
+      exit();
+    }
+    $row_user = $result_user->fetch_assoc();
+    $sql_item="SELECT * FROM item WHERE user_id=" . $_SESSION["user_id"] . ";";
+    $result_item = $mysqli->query($sql_item);
+    if(!$result_item)
+    {
+      echo $mysqli->error;
+      exit();
+    }
+    $sql_post="SELECT * FROM post WHERE author_id=" . $_SESSION["user_id"] . ";";
+    $result_post = $mysqli->query($sql_post);
+    if(!$result_post)
+    {
+      echo $mysqli->error;
+      exit();
+    }
+    $num_post=0;
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +53,7 @@
        <?php if(isset($_SESSION['username']) && !empty($_SESSION['username'])) : ?>
       <div class="_nav__user-box">
          <img src="/assets/user-photo.jpg" alt="user photo">
-                <h6><span>同同同</span></h6>
+                <h6><span><?php echo $_SESSION["username"]; ?></span></h6>
       </div>
       <div class="_nav__upload-box">
         <a href="item_upload.php" class="btn btn-lg btn-info mr-3">我要上传</a>
@@ -78,7 +109,7 @@
 
 
     <div class="container-fluid" id="profile-container">
-        <h3 class="mt-4">志同的主页</h3>
+        <h3 class="mt-4"><?php echo $_SESSION["username"]; ?>的主页</h3>
         <div class="container-body">
             <div class="container--left">
                 <img src="/assets/user-photo.jpg" alt="user photo">
@@ -86,7 +117,7 @@
                     <svg>
                         <use xlink:href="/assets/sprite.svg#icon-user"></use>
                     </svg>
-                    <span>志同</span>
+                    <span><?php echo $_SESSION["username"] ?></span>
                 </div>
                 <div class="container--left__row">
                     <svg>
@@ -98,7 +129,7 @@
                     <svg>
                         <use xlink:href="/assets/sprite.svg#icon-star-empty"></use>
                     </svg>
-                    <span>1600</span>
+                    <span><?php echo $row_user["contribution"]; ?></span>
                 </div>
             </div>
 
@@ -119,16 +150,16 @@
 
                         <div class="content">
                             <div>
-                                用户名: 
+                                用户名: <?php echo $row_user["username"]; ?> 
                             </div>
                             <div>
-                                微信: 
+                                微信: <?php echo $row_user["wechat_id"]; ?> 
                             </div>
                             <div>
-                                手机: 
+                                手机: <?php echo $row_user["cellphone"]; ?> 
                             </div>
                             <div>
-                                邮箱: 
+                                邮箱: <?php echo $row_user["email"]; ?> 
                             </div>
                         </div>    
                     </div>
@@ -136,67 +167,15 @@
                     <div class="my-items">
                         <h5>我的物资</h5>
                         <div class="img-container">
+                            <?php while($row_item = $result_item->fetch_assoc()): ?>
                             <div class="img-box">
                                 <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
+                                <div>商品名称:<?php echo $row_item["name"] ?></div>
+                                <div>数量:<?php echo $row_item["amount"] ?></div>
+                                <div>类别：<?php echo $row_item["category"] ?></div>>
                                 <div><a href="#">修改</a></div>
                             </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-                            <div class="img-box">
-                                <img src="assets/mask.jpeg" alt="mask img">
-                                <div>商品名称:</div>
-                                <div>数量:</div>
-                                <div><a href="#">修改</a></div>
-                            </div>
-
+                           <?php endwhile; ?>
                         </div>
                     </div>
 
@@ -208,17 +187,19 @@
                           <tr>
                             <th scope="col"></th>
                             <th scope="col">我的帖子</th>
-                            <th scope="col"></th>
+                            <th scope="col">预览图</th>
                             <th scope="col">发布时间</th>
                             <th scope="col">阅览</th>
                             <th scope="col">贡献值</th>
                           </tr>
                         </thead>
                         <tbody>
+                          <?php while($row_post = $result_post->fetch_assoc()): ?>
+                          <?php $num_post=$num_post+1 ?>
                           <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><?php echo $num_post; ?></th>
                             <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                <?php echo$row_post["headline"] ?>
                             </td>
                             <td>
                                 <svg class="edit">
@@ -226,73 +207,23 @@
                                 </svg>
                             </td>
                             <td>
-                                2020/04/04
+                                <?php echo $row_post["publish_time"] ?>
                             </td>
                             <td class="icon-container">
                                 <svg>
                                     <use xlink:href="/assets/sprite.svg#icon-eye"></use>
                                 </svg>
-                                20
+                                <?php echo $row_post["view"] ?>
                             </td>
                             <td class="icon-container">
                                 <svg>
                                     <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
                                 </svg>
-                                28
+                                <?php echo $row_post["thumb_up"] ?>
                             </td>
+                         
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            </td>
-                            <td>
-                                <svg class="edit">
-                                    <use xlink:href="/assets/sprite.svg#icon-edit-3"></use>
-                                </svg>
-                            </td>
-                            <td>
-                                2020/04/04
-                            </td>
-                            <td class="icon-container">
-                                <svg>
-                                    <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                                </svg>
-                                20
-                            </td>
-                            <td class="icon-container">
-                                <svg>
-                                    <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                                </svg>
-                                28
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            </td>
-                            <td>
-                                <svg class="edit">
-                                    <use xlink:href="/assets/sprite.svg#icon-edit-3"></use>
-                                </svg>
-                            </td>
-                            <td>
-                                2020/04/04
-                            </td>
-                            <td class="icon-container">
-                                <svg>
-                                    <use xlink:href="/assets/sprite.svg#icon-eye"></use>
-                                </svg>
-                                20
-                            </td>
-                            <td class="icon-container">
-                                <svg>
-                                    <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                                </svg>
-                                28
-                            </td>
-                          </tr>
+                        <?php endwhile; ?>
                         </tbody>
                       </table>
                 </div>
