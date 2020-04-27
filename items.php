@@ -203,7 +203,7 @@
                                 数量:&nbsp;<span class="count-content"><?php echo $row['amount']; ?></span>
                             </span>
                             <span class="post-time">
-                                时间:&nbsp;<span class="count-content"></span>
+                                时间:&nbsp;<span class="count-content"><?php echo $row['timestamp']; ?></span>
                             </span>
                             <span class="seller">
                                 卖家:&nbsp;
