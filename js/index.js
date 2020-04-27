@@ -1,11 +1,11 @@
-let imgShown = $(".img-box img:first-of-type");
+let containerShown = $(".box--1 > div:first-of-type");
 
 
 $('.img-box svg:first-child').click(function() {
-    if(!imgShown.prev().is(":first-of-type")) {
-        imgShown.hide();
-        imgShown.prev().show();
-        imgShown = imgShown.prev();
+    if(!containerShown.is("div:first-of-type")) {
+        containerShown.hide();
+        containerShown.prev().show();
+        containerShown = containerShown.prev();
     }
     
     
@@ -13,10 +13,10 @@ $('.img-box svg:first-child').click(function() {
 
 
 $('.img-box svg:last-child').click(function() {
-    if(!imgShown.next().is(":last-of-type")) {
-        imgShown.hide();
-        imgShown.next().show();
-        imgShown = imgShown.next();
+    if(!containerShown.is("div:last-of-type")) {
+        containerShown.hide();
+        containerShown.next().show();
+        containerShown = containerShown.next();
     }
     
     

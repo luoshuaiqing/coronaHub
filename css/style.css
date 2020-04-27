@@ -280,6 +280,8 @@ nav {
     text-align: center;
     display: flex;
     flex-direction: column; }
+    #index-container .box--1 > div:not(:first-of-type) {
+      display: none; }
     #index-container .box--1 .img-box {
       display: flex;
       justify-content: space-between;
