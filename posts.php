@@ -10,6 +10,10 @@
 
 
     $category = $_GET['category'];
+    $sort_by = $_GET['sort_by'];
+    if (!isset($sort_by) || empty($sort_by)) {
+      $sort_by = "";
+    }
 
     $sql_prepared = "SELECT * FROM post WHERE category = ?;";
     $statement = $mysqli->prepare($sql_prepared);
@@ -44,6 +48,29 @@
             // email for now, change to wechat_id later
         }
         array_push($result_arr,$row);
+    }
+
+    // Sorts result array
+    if ($sort_by == "time") {
+      usort($result_arr, function($a, $b) {
+        // Custom closure to sort by DateTime
+        $ad = new DateTime($a['publish_time']);
+        $bd = new DateTime($b['publish_time']);
+        if ($ad == $bd) {
+          return 0;
+        }
+        return $ad > $bd ? -1 : 1;
+      });
+    } else if ($sort_by == "contribution") {
+      usort($result_arr, function($a, $b) {
+        // Custom closure to sort by contribution
+        $ac = $a['contribution'];
+        $bc = $b['contribution'];
+        if ($ac == $bc) {
+          return 0;
+        }
+        return $ac > $bc ? -1 : 1;
+      });
     }
 
     $statement->close();
@@ -125,7 +152,7 @@
   </nav>
 
 
-    <form class="container-fluid" id="posts-container" action="#" method="GET">
+    <form class="container-fluid" id="posts-container" action="/posts.php" method="GET">
         <div class="header-nav">
             <h3 class="title-box">
               <?php 
@@ -143,13 +170,14 @@
             </div>
 
             <div class="sorting-box input-group">
-                <select class="custom-select">
-                    <option selected disabled>排序方式</option>
-                    <option value="排序方式 1">排序方式 1</option>
-                    <option value="排序方式 2">排序方式 2</option>
-                    <option value="排序方式 3">排序方式 3</option>
+                <select name="sort_by" class="custom-select">
+                    <option <?php if ($sort_by == "") echo 'selected';?> disabled>排序方式</option>
+                    <option <?php if ($sort_by == "time") echo 'selected';?> value="time">时间</option>
+                    <option <?php if ($sort_by == "contribution") echo 'selected';?> value="contribution">贡献值</option>
                   </select>
             </div>
+
+            <input type="hidden" name="category" value="<?php echo $category; ?>" />
 
             <button class="btn btn-lg btn-primary confirm-button" type="submit" >确认</button>
 
