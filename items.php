@@ -202,6 +202,9 @@
                             <span class="count">
                                 数量:&nbsp;<span class="count-content"><?php echo $row['amount']; ?></span>
                             </span>
+                            <span class="post-time">
+                                时间:&nbsp;<span class="count-content"></span>
+                            </span>
                             <span class="seller">
                                 卖家:&nbsp;
                                 <span class="seller-content"> 
