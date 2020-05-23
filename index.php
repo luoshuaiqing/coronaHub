@@ -3,7 +3,12 @@
 
   function date_sort($a,$b)
   {
-    return $a['timestamp'] > $b['timestamp'];
+    return $a['update_time'] < $b['update_time'];
+  }
+
+  function contribution_sort($a, $b)
+  {
+    return $a['contribution'] < $b['contribution'];
   }
 
   $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -14,6 +19,9 @@
   }
 
 
+  /*
+    For items in index.php
+  */
   $sql_item = "SELECT * FROM item WHERE main_page = 1;";
   $result_item = $mysqli->query($sql_item);
   if(!$result_item)
@@ -43,6 +51,55 @@
   }
 
   // user item_arr() to access the items in the main page
+
+  /*
+    Limit the number of post to 6 for latest news/posts
+  */
+  $post_arr = array();
+  $sql_post = "SELECT * FROM post;";
+  $result_post = $mysqli->query($sql_post);
+  while($row = $result_post->fetch_assoc())
+  {
+    $author_id = $row['author_id'];
+    $sql_user = "SELECT * FROM user WHERE user_id = " . $author_id . ";";
+    $result_user = $mysqli->query($sql_user);
+    if(!$result_user)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+    while($row_user = $result_user->fetch_assoc())
+    {
+        $row['username'] = $row_user['username'];
+        // find somewhere to display username! (Designer's tasks)
+    }
+    array_push($post_arr,$row);
+  }
+
+  usort($post_arr,"date_sort");
+
+  /*
+    For Contribution List
+  */
+  $user_arr = array();
+  $sql_user = "SELECT * FROM user;";
+  $result_user = $mysqli->query($sql_user);
+  if(!$result_user)
+  {
+    echo $mysqli->error;
+    exit();
+  }
+  while($row = $result_user->fetch_assoc())
+  {
+    array_push($user_arr,$row);
+  }
+
+  usort($user_arr,"contribution_sort");
+
+  //var_dump($user_arr);
+
+
+
 
 
 ?>
@@ -171,71 +228,39 @@
     <div class="col-lg-4 col-sm-4 col-12">
         <h4 class="header">最新发帖咨询</h4>
         <ol class="posts-box">
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-
-          <li class="post">
-            <h5 class="title"><a href="">This is a title</a></h5>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
-          </li>
-          
-
-
+          <?php for($i = 0; $i<min(6,sizeof($post_arr)); $i++) { ?>
+            <li class="post">
+              <h5 class="title"><a href="<?php echo "view_post.php?id=$post_arr[$i]['post_id']"; ?>">
+                <?php echo $post_arr[$i]['headline'] ?></a></h5>
+              <div>
+                <?php 
+                  $content = $post_arr[$i]['content'];
+                  for($j = 0; $j<min(strlen($content),100); $j++)
+                  {
+                    echo $content[$j];
+                  }
+                 ?>
+              </div>
+            </li>
+          <?php }?>
         </ol>
-      
-
     </div>
+
+
     <div class="col-lg-4 col-sm-4 col-12">
       <h4 class="header">贡献榜</h4>
       <ol class="contribution-box">
-          <li class="contribution">
-            <span>志先生</span><span>108</span>
-          </li>
+        <?php for($i = 0;$i<5;$i++){ ?>
+            <?php if($user_arr[$i]['contribution']<=0) : ?>
+              <?php break;?>
+            <?php else: ?>
+            <li class="contribution">
+              <span><?php echo $user_arr[$i]['username']; ?></span>
+              <span><?php echo $user_arr[$i]['contribution'];?></span>
+            </li>
+            <?php endif;?>
           
-          <li class="contribution">
-            <span>志先生</span><span>108</span>
-          </li>
-          
-          <li class="contribution">
-            <span>志先生</span><span>108</span>
-          </li>
-          
-          <li class="contribution">
-            <span>志先生</span><span>108</span>
-          </li>
-          
+        <?php }?>
           
 
           <div class="contribution">
