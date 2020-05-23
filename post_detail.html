@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>posts page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+   <nav class="_nav">
+    <div class="_nav__box--left">
+        <h4><a href = "index.php" style = "text-decoration:none; color:black;">coronaHub</a></h4>
+    </div>
+
+    <div class="_nav__box--right">
+
+
+         <div class="_nav__login-box">
+        <div><a href="login.php">登录</a>&nbsp;/&nbsp;
+          <a href="signup.php">注册</a></div>
+        </div>
+
+      <div class="_nav__upload-box">
+        <a href="index.php?error=请先登录" class="btn btn-lg btn-info">我要上传</a>
+      </div>
+    </div>
+
+  </nav>
+
+  <nav class="nav-secondary">
+    <div class="header-box">
+      <h6><a href="items.php?category=mask">口罩</a></h6>
+      <img src="assets/nav-mask.png" alt="mask img"> 
+    </div>
+    <div class="header-box">
+       <h6><a href="items.php?category=goggle">护目镜</a></h6>
+      <img src="assets/nav-glass.png" alt="glass img">
+    </div>
+    <div class="header-box">
+       <h6><a href="items.php?category=sanitizer">消毒用具</a></h6>
+      <img src="assets/nav-discontaminate.png" alt="discontaminate img">
+    </div>
+    <div class="header-box">
+     <h6><a href="items.php?category=necessity">日常用品</a></h6>
+      <img src="assets/nav-necessity.png" alt="necessity img">
+    </div>
+    <div class="header-box">
+      <h6><a href = "posts.php?category=back">回国</a></h6>
+      <img src="assets/nav-back.png" alt="back img">
+    </div>
+    <div class="header-box">
+      <h6><a href = "posts.php?category=stay">留守</a></h6>
+      <img src="assets/nav-stay.png" alt="stay img">
+    </div>
+  </nav>
+
+
+    <form class="container-fluid" action="/posts.php" method="GET">
+        <div class="header-nav">
+            <h3 class="title-box">
+                回国
+            </h3>
+            
+            <div class="search-box">
+                <label for="search-input">搜索:</label>
+                <input type="text" class="search-input" id="search-input" placeholder="关键词">
+            </div>
+
+            <div class="sorting-box input-group">
+                <select name="sort_by" class="custom-select">
+                    <option> 排序方式</option>
+                    <option> 时间</option>
+                    <option> 贡献值</option>
+                  </select>
+            </div>
+
+            <input type="hidden" name="category" value="" />
+
+            <button class="btn btn-lg btn-primary confirm-button" type="submit" >确认</button>
+
+            
+
+            <div class="pagination-box">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">前一页</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">后一页</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="post-detail-container container-fluid">
+            <div class="post-detail-box">
+                <h4 class="post-detail-header--primary">Cheap Plane Ticket</h4>
+                <div class="post-detail-header--sub">
+                    <div>
+                        <img src="assets/user-photo.jpg" alt="user photo">
+                    <span>志先生</span>
+                    </div>
+                    
+                    <span>发表于04-25-2020</span>
+
+                    <div>
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-eye"></use>
+                        </svg>
+                        <span>1001</span>
+                    </div>
+                    
+                </div>
+                <div class="post-detail-header__content">
+                    Non ut duis cupidatat dolor ad incididunt. Cillum ipsum occaecat voluptate minim. Laboris pariatur occaecat labore commodo duis minim est laboris enim tempor consectetur sunt. Id do eu non dolor. Tempor ut consequat voluptate ad aute excepteur et ipsum ullamco ex duis minim do pariatur. Quis cupidatat dolor enim fugiat eu duis eu ex. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odit nihil itaque repellendus cumque ex? Quasi deleniti et pariatur laudantium eaque repellendus minus possimus corrupti molestias. Maiores blanditiis nobis delectus.
+                    Non ut duis cupidatat dolor ad incididunt. Cillum ipsum occaecat voluptate minim. Laboris pariatur occaecat labore commodo duis minim est laboris enim tempor consectetur sunt. Id do eu non dolor. Tempor ut consequat voluptate ad aute excepteur et ipsum ullamco ex duis minim do pariatur. Quis cupidatat dolor enim fugiat eu duis eu ex. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odit nihil itaque repellendus cumque ex? Quasi deleniti et pariatur laudantium eaque repellendus minus possimus corrupti molestias. Maiores blanditiis nobis delectus.
+                    <img src="assets/mask.jpeg" alt="post image">
+                </div>
+                <div class="post-detail-footer">
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
+                        </svg>
+                        180
+                    </div>
+                    
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-thumbs-down"></use>
+                        </svg>
+                        10
+                    </div>
+
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-chat"></use>
+                        </svg>
+                        评论
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- review 1 -->
+            <div class="post-detail-review">
+                <div class="post-detail-review-header">
+                    <div>
+                        <img src="assets/user-photo.jpg" alt="user photo">
+                        <span>志先生的小跟班</span>
+                    </div>
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-chat"></use>
+                        </svg>
+                        评论
+                    </div>
+                </div>
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti alias eum libero delectus, accusamus unde quos harum deserunt! In laborum ea accusamus laudantium esse consectetur labore, animi quisquam rerum nesciunt. Mollit non ex officia duis exercitation nulla non consequat cillum nisi reprehenderit sit laborum. Eu excepteur cupidatat fugiat duis cillum dolore cupidatat duis reprehenderit ex. Fugiat officia culpa exercitation ad qui nostrud irure fugiat. Laboris excepteur labore excepteur eu duis velit duis id consequat cupidatat. Commodo excepteur deserunt sint non officia commodo fugiat ullamco deserunt ea laborum culpa laboris. Ipsum consectetur in excepteur dolore aliqua irure fugiat culpa ullamco Lorem in anim. Dolore pariatur id minim irure cillum commodo nulla ex mollit enim cillum tempor.
+                </div>
+            </div>
+            
+            <div class="post-detail-review post-detail-review-followup">
+                <div class="post-detail-review-header">
+                    <div>
+                        <img src="assets/user-photo.jpg" alt="user photo">
+                        <span>志先生的小跟班</span>
+                    </div>
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-chat"></use>
+                        </svg>
+                        评论
+                    </div>
+                </div>
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti alias eum libero delectus, accusamus unde quos harum deserunt! In laborum ea accusamus laudantium esse consectetur labore, animi quisquam rerum nesciunt. Mollit non ex officia duis exercitation nulla non consequat cillum nisi reprehenderit sit laborum. Eu excepteur cupidatat fugiat duis cillum dolore cupidatat duis reprehenderit ex. Fugiat officia culpa exercitation ad qui nostrud irure fugiat. Laboris excepteur labore excepteur eu duis velit duis id consequat cupidatat. Commodo excepteur deserunt sint non officia commodo fugiat ullamco deserunt ea laborum culpa laboris. Ipsum consectetur in excepteur dolore aliqua irure fugiat culpa ullamco Lorem in anim. Dolore pariatur id minim irure cillum commodo nulla ex mollit enim cillum tempor.
+                </div>
+            </div>
+            <div class="post-detail-review post-detail-review-followup">
+                <div class="post-detail-review-header">
+                    <div>
+                        <img src="assets/user-photo.jpg" alt="user photo">
+                        <span>志先生的小跟班</span>
+                    </div>
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-chat"></use>
+                        </svg>
+                        评论
+                    </div>
+                </div>
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti alias eum libero delectus, accusamus unde quos harum deserunt! In laborum ea accusamus laudantium esse consectetur labore, animi quisquam rerum nesciunt. Mollit non ex officia duis exercitation nulla non consequat cillum nisi reprehenderit sit laborum. Eu excepteur cupidatat fugiat duis cillum dolore cupidatat duis reprehenderit ex. Fugiat officia culpa exercitation ad qui nostrud irure fugiat. Laboris excepteur labore excepteur eu duis velit duis id consequat cupidatat. Commodo excepteur deserunt sint non officia commodo fugiat ullamco deserunt ea laborum culpa laboris. Ipsum consectetur in excepteur dolore aliqua irure fugiat culpa ullamco Lorem in anim. Dolore pariatur id minim irure cillum commodo nulla ex mollit enim cillum tempor.
+                </div>
+            </div>
+        
+
+            <!-- review 2 -->
+            <div class="post-detail-review">
+                <div class="post-detail-review-header">
+                    <div>
+                        <img src="assets/user-photo.jpg" alt="user photo">
+                        <span>志先生的小跟班</span>
+                    </div>
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/assets/sprite.svg#icon-chat"></use>
+                        </svg>
+                        评论
+                    </div>
+                </div>
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti alias eum libero delectus, accusamus unde quos harum deserunt! In laborum ea accusamus laudantium esse consectetur labore, animi quisquam rerum nesciunt. Mollit non ex officia duis exercitation nulla non consequat cillum nisi reprehenderit sit laborum. Eu excepteur cupidatat fugiat duis cillum dolore cupidatat duis reprehenderit ex. Fugiat officia culpa exercitation ad qui nostrud irure fugiat. Laboris excepteur labore excepteur eu duis velit duis id consequat cupidatat. Commodo excepteur deserunt sint non officia commodo fugiat ullamco deserunt ea laborum culpa laboris. Ipsum consectetur in excepteur dolore aliqua irure fugiat culpa ullamco Lorem in anim. Dolore pariatur id minim irure cillum commodo nulla ex mollit enim cillum tempor.
+                </div>
+            </div>
+        
+        </div>
+    </form>
+
+
+    <script src="./bundle.js"></script>
+</body>
+
+</html>

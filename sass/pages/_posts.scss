@@ -49,7 +49,7 @@
             height: calc(100% - 2 * #{$height-nav-index});
             border: 1px solid black;
             overflow: hidden;
-            border-bottom: none;
+            // border-bottom: none;
 
             .top {
                 background-color: rgba(grey, .3);

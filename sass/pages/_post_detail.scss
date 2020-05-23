@@ -1,0 +1,129 @@
+.post-detail-container {
+    margin-bottom: 5rem;
+    .post-detail-box {
+        
+        padding: 1rem 2rem;
+        border: 1px solid black;
+
+        .post-detail-header--primary {
+            font-weight: 550 !important;
+        }
+
+        .post-detail-header--sub {
+            display: flex;
+            font-size: 1.6rem;
+            align-items: center;
+            
+            > *:not(:last-child) {
+                margin-right: 2rem;
+            }
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            img {
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+            }
+        }
+
+        .post-detail-header__content {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            border-bottom: 1px dashed black;
+
+            img {
+                margin: 2rem 0;
+                display: block;
+                max-height: 25rem;
+            }
+        }
+
+        .post-detail-footer {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            padding: 1rem 0;
+            padding-bottom: .5rem;
+
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+
+                &:hover {
+                    fill: $color-primary;
+                    cursor: pointer;
+                }
+            }
+
+            .icon-container {
+                margin-right: 2rem;
+            }
+        }
+
+    }
+
+    .post-detail-review {
+        padding: 1rem 2rem;
+        margin-top: 3rem;
+        border: 1px solid black;
+
+
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.4rem;
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            img {
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+            }
+        }
+
+        .content {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+
+        }
+
+
+        &-followup {
+            width: 75%;
+            margin-top: 0;
+            border-top: 0;
+            transform: translateX(33.33%);
+
+            .post-detail-review-header { 
+                font-size: 1.3rem;
+
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+                }
+    
+                img {
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 50%;
+                }
+            }
+
+            .content {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+
+}

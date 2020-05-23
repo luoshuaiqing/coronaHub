@@ -94,6 +94,9 @@ ol li::before {
 .form-check-label {
   margin-left: 2rem !important; }
 
+.icon-container svg {
+  margin-right: .5rem; }
+
 nav {
   display: flex !important;
   padding: 1rem 3rem;
@@ -458,8 +461,7 @@ nav {
     #posts-container .posts-table .posts-table__content {
       height: calc(100% - 2 * 6rem);
       border: 1px solid black;
-      overflow: hidden;
-      border-bottom: none; }
+      overflow: hidden; }
       #posts-container .posts-table .posts-table__content .top {
         background-color: rgba(128, 128, 128, 0.3); }
       #posts-container .posts-table .posts-table__content .posts-table__row {
@@ -866,7 +868,83 @@ nav {
         #profile-container .container--right-bottom table svg {
           width: 2rem;
           height: 2rem; }
-        #profile-container .container--right-bottom table .icon-container svg {
-          margin-right: .5rem; }
         #profile-container .container--right-bottom table svg.edit:hover {
           cursor: pointer; }
+
+.post-detail-container {
+  margin-bottom: 5rem; }
+  .post-detail-container .post-detail-box {
+    padding: 1rem 2rem;
+    border: 1px solid black; }
+    .post-detail-container .post-detail-box .post-detail-header--primary {
+      font-weight: 550 !important; }
+    .post-detail-container .post-detail-box .post-detail-header--sub {
+      display: flex;
+      font-size: 1.6rem;
+      align-items: center; }
+      .post-detail-container .post-detail-box .post-detail-header--sub > *:not(:last-child) {
+        margin-right: 2rem; }
+      .post-detail-container .post-detail-box .post-detail-header--sub svg {
+        width: 3rem;
+        height: 3rem; }
+      .post-detail-container .post-detail-box .post-detail-header--sub img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%; }
+    .post-detail-container .post-detail-box .post-detail-header__content {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      border-bottom: 1px dashed black; }
+      .post-detail-container .post-detail-box .post-detail-header__content img {
+        margin: 2rem 0;
+        display: block;
+        max-height: 25rem; }
+    .post-detail-container .post-detail-box .post-detail-footer {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      padding: 1rem 0;
+      padding-bottom: .5rem; }
+      .post-detail-container .post-detail-box .post-detail-footer svg {
+        width: 3rem;
+        height: 3rem; }
+        .post-detail-container .post-detail-box .post-detail-footer svg:hover {
+          fill: #17a2b8;
+          cursor: pointer; }
+      .post-detail-container .post-detail-box .post-detail-footer .icon-container {
+        margin-right: 2rem; }
+  .post-detail-container .post-detail-review {
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+    border: 1px solid black; }
+    .post-detail-container .post-detail-review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.4rem; }
+      .post-detail-container .post-detail-review-header svg {
+        width: 3rem;
+        height: 3rem; }
+      .post-detail-container .post-detail-review-header img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%; }
+    .post-detail-container .post-detail-review .content {
+      font-size: 1.3rem;
+      margin-top: 1rem; }
+    .post-detail-container .post-detail-review-followup {
+      width: 75%;
+      margin-top: 0;
+      border-top: 0;
+      transform: translateX(33.33%); }
+      .post-detail-container .post-detail-review-followup .post-detail-review-header {
+        font-size: 1.3rem; }
+        .post-detail-container .post-detail-review-followup .post-detail-review-header svg {
+          width: 2rem;
+          height: 2rem; }
+        .post-detail-container .post-detail-review-followup .post-detail-review-header img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%; }
+      .post-detail-container .post-detail-review-followup .content {
+        font-size: 1.1rem; }
