@@ -10,10 +10,10 @@
 
 
     $category = $_GET['category'];
-    $sort_by = $_GET['sort_by'];
-    if (!isset($sort_by) || empty($sort_by)) {
+    if(!isset($_GET['sort_by']) || empty($_GET['sort_by'])) {
       $sort_by = "";
     }
+    
 
     $sql_prepared = "SELECT * FROM item WHERE category = ?;";
     $statement = $mysqli->prepare($sql_prepared);
