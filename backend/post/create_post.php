@@ -35,6 +35,7 @@
     while($row = $result_user->fetch_assoc())
     {
     	$user_id = $row['user_id'];
+    	$contribution = $row['contribution'];
     }
 
 	if(!isset($_POST['headline']) || empty($_POST['headline']))
@@ -66,6 +67,17 @@
 	{
 		$error = "Please select a category for your post!";
 		header("Location: ../../post_add.php?error=".$error);
+		exit();
+	}
+
+	$contribution = $contribution + 2;
+	$sql_update = "UPDATE user SET contribution = ? WHERE user_id = ?;";
+	$statement_update = $mysqli->prepare($sql_update);
+	$statement_update->bind_param("ii",$contribution,$user_id);
+	$execute_update = $statement_update->execute();
+	if(!$execute_update)
+	{
+		echo $mysqli->error;
 		exit();
 	}
 

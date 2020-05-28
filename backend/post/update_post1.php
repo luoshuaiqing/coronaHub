@@ -12,19 +12,18 @@
 	}
 
 	$headline = $_POST['headline'];
-	$post_id = $_POST['post_id'];
+	$post_id=$_POST["post_id"];
 	$content= $_POST['content'];
 	$timestamp = date("Y-m-d H:i:s"); // need to set server timezone
 
 	if(!isset($_POST['content']) || empty($_POST['content']))
 	{
 		$error = "Content cannot be null!";
-		header('Location: ../../edit_post.php?error=' . $error); // directly go back to the previous page with error displayed
-		exit();
+		header('Location: #'); // directly go back to the previous page with error displayed
 	}
 	
 
-	$sql_prepared = "UPDATE post SET content = ?, update_time = ?, headline = ? WHERE post_id = ?;";
+	$sql_prepared = "UPDATE post SET content = ?, publish_time = ?, headline = ? WHERE post_id = ?;";
 
 	$statement_update = $mysqli->prepare($sql_prepared);
 	$statement_update->bind_param("sssi",$content,$timestamp,$headline,$post_id);
@@ -40,10 +39,9 @@
 	if($statement_update->affected_rows == 1)
 	{
 		$isUpdated = true;
-		echo "nmb";
 	}
 
 	$statement_update->close();
 	$mysqli->close();
-	header('Location: ../../profile.php') // goto the next location (probably 我的 界面) 
+	header('Location: #') // goto the next location (probably 我的 界面) 
 ?>
