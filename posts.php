@@ -8,8 +8,6 @@
       exit();
     }
 
-
-
     $category = $_GET['category'];
     $sort_by = $_GET['sort_by'];
     if (!isset($sort_by) || empty($sort_by)) {

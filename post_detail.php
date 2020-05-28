@@ -23,6 +23,7 @@
         exit();
     }
     $row = $result_post->fetch_assoc();
+    $view = $row['view'];
     $author_id = $row['author_id'];
 
     $sql_author = "SELECT * FROM user WHERE user_id = " . $author_id . ";";
@@ -35,6 +36,15 @@
 
     $row_user = $result_user->fetch_assoc();
     $row['username'] = $row_user['username'];
+    $view+=1;
+    $sql_update = "UPDATE post SET view = " . $view . " WHERE post_id = " . $post_id . ";";
+    $result_update = $mysqli->query($sql_update);
+    if(!$result_update)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+    $mysqli->close();
 
     // use $row to access the content of the post directly
 

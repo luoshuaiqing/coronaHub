@@ -1,6 +1,5 @@
 <?php 
 
-
 // Attention: Only ***upvote*** is supported for now, but database is already flexible
     require "../config/config.php";
 
@@ -51,7 +50,3 @@
     }
 
 ?>
-
-<DOCTYPE html>
-	<html>
-	</html>
