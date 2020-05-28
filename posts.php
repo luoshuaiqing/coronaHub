@@ -9,6 +9,7 @@
     }
 
 
+
     $category = $_GET['category'];
     $sort_by = $_GET['sort_by'];
     if (!isset($sort_by) || empty($sort_by)) {
@@ -276,7 +277,7 @@
                 <?php foreach($result_arr as $row) { ?>
                   <div class="posts-table__row">
                       <div class="title-container">
-                          <a href="post_view.php?id=<?php echo $row['post_id']; ?>" class="title">
+                          <a href="post_detail.php?id=<?php echo $row['post_id']; ?>" class="title">
                             <?php 
                               echo $cnt;
                               echo ".";

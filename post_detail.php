@@ -1,10 +1,54 @@
+<?php 
+    require "backend/config/config.php";
+
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if($mysqli->connect_errno)
+    {
+      echo $mysqli->connect_error;
+      exit();
+    }
+
+    $post_id = $_GET['id'];
+    if(!isset($post_id) || empty($post_id))
+    {
+        echo "Error in getting post id!";
+        exit();
+    }
+
+    $sql_post = "SELECT * FROM post WHERE post_id = " . $post_id . ";";
+    $result_post = $mysqli->query($sql_post);
+    if(!$result_post)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+    $row = $result_post->fetch_assoc();
+    $author_id = $row['author_id'];
+
+    $sql_author = "SELECT * FROM user WHERE user_id = " . $author_id . ";";
+    $result_user = $mysqli->query($sql_author);
+    if(!$result_user)
+    {
+        echo $mysqli->error;
+        exit();
+    }
+
+    $row_user = $result_user->fetch_assoc();
+    $row['username'] = $row_user['username'];
+    //array_push($row, $row_user['username']);
+
+    // use $row to access the content of the post directly
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>posts page</title>
+    <title>Posts Page</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -13,6 +57,7 @@
     <div class="_nav__box--left">
         <h4><a href = "index.php" style = "text-decoration:none; color:black;">coronaHub</a></h4>
     </div>
+
 
     <div class="_nav__box--right">
 
@@ -95,41 +140,56 @@
 
         <div class="post-detail-container container-fluid">
             <div class="post-detail-box">
-                <h4 class="post-detail-header--primary">Cheap Plane Ticket</h4>
+                <h4 class="post-detail-header--primary">
+
+                    <?php echo $row['headline']; ?>
+                </h4>
+
                 <div class="post-detail-header--sub">
                     <div>
                         <img src="assets/user-photo.jpg" alt="user photo">
-                    <span>志先生</span>
+                    <span>
+                        <?php echo $row['username']; ?>
+                    </span>
                     </div>
                     
-                    <span>发表于04-25-2020</span>
+                    <span>
+                        <?php echo $row['update_time']; ?>
+                    </span>
 
+                    <!-- # of views -->
                     <div>
                         <svg>
                             <use xlink:href="/assets/sprite.svg#icon-eye"></use>
                         </svg>
-                        <span>1001</span>
-                    </div>
-                    
+                        <span>
+                            <?php echo $row['view']; ?>
+                        </span>
+                    </div>  
                 </div>
+
+                <!-- Content of the post -->
                 <div class="post-detail-header__content">
-                    Non ut duis cupidatat dolor ad incididunt. Cillum ipsum occaecat voluptate minim. Laboris pariatur occaecat labore commodo duis minim est laboris enim tempor consectetur sunt. Id do eu non dolor. Tempor ut consequat voluptate ad aute excepteur et ipsum ullamco ex duis minim do pariatur. Quis cupidatat dolor enim fugiat eu duis eu ex. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odit nihil itaque repellendus cumque ex? Quasi deleniti et pariatur laudantium eaque repellendus minus possimus corrupti molestias. Maiores blanditiis nobis delectus.
-                    Non ut duis cupidatat dolor ad incididunt. Cillum ipsum occaecat voluptate minim. Laboris pariatur occaecat labore commodo duis minim est laboris enim tempor consectetur sunt. Id do eu non dolor. Tempor ut consequat voluptate ad aute excepteur et ipsum ullamco ex duis minim do pariatur. Quis cupidatat dolor enim fugiat eu duis eu ex. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta odit nihil itaque repellendus cumque ex? Quasi deleniti et pariatur laudantium eaque repellendus minus possimus corrupti molestias. Maiores blanditiis nobis delectus.
+                    <?php echo $row['content']; ?>
                     <img src="assets/mask.jpeg" alt="post image">
                 </div>
+
+                <!-- Thumb-ups -->
                 <div class="post-detail-footer">
                     <div class="icon-container">
                         <svg>
                             <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
                         </svg>
-                        180
+                        <span id = "upvote"><?php echo $row['thumb_up']; ?></span>
                     </div>
                     
+                    <!-- Didn't design this field to begin with, whether we should
+                     add this later is up to further discussion -->
                     <div class="icon-container">
                         <svg>
                             <use xlink:href="/assets/sprite.svg#icon-thumbs-down"></use>
                         </svg>
-                        10
+                        <span> 10 </span>
                     </div>
 
                     <div class="icon-container">
@@ -141,9 +201,9 @@
                 </div>
             </div>
 
-
-            <!-- review 1 -->
-            <div class="post-detail-review">
+            <!--  -->
+        <!-- review 1 -->
+            <!-- <div class="post-detail-review">
                 <div class="post-detail-review-header">
                     <div>
                         <img src="assets/user-photo.jpg" alt="user photo">
@@ -197,7 +257,6 @@
             </div>
         
 
-            <!-- review 2 -->
             <div class="post-detail-review">
                 <div class="post-detail-review-header">
                     <div>
@@ -215,12 +274,35 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti alias eum libero delectus, accusamus unde quos harum deserunt! In laborum ea accusamus laudantium esse consectetur labore, animi quisquam rerum nesciunt. Mollit non ex officia duis exercitation nulla non consequat cillum nisi reprehenderit sit laborum. Eu excepteur cupidatat fugiat duis cillum dolore cupidatat duis reprehenderit ex. Fugiat officia culpa exercitation ad qui nostrud irure fugiat. Laboris excepteur labore excepteur eu duis velit duis id consequat cupidatat. Commodo excepteur deserunt sint non officia commodo fugiat ullamco deserunt ea laborum culpa laboris. Ipsum consectetur in excepteur dolore aliqua irure fugiat culpa ullamco Lorem in anim. Dolore pariatur id minim irure cillum commodo nulla ex mollit enim cillum tempor.
                 </div>
             </div>
-        
+         -->
         </div>
     </form>
 
 
-    <script src="./bundle.js"></script>
+    <script src="./bundle.js"> </script>
+  <!--   <script type="text/javascript">
+        document.querySelector(".icon-container").onclick = function()
+        {
+            var upvote = parseInt(document.getElementById("upvote").innerHTML);
+          
+            upvote += 1;
+            
+            document.querySelector("#upvote").innerHTML = upvote;
+
+            var $this = $(this);
+            if ($this.is(".icon-container")) {
+                $.cookie("button1", 1, {
+                    expires: 1
+                });
+                $this.prop("disabled", true);
+            } 
+
+            if ($.cookie("button1")) {
+                $(".icon-container").prop("disabled", true);
+            }
+        }
+
+    </script> -->
 </body>
 
 </html>

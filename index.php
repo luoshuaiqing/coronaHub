@@ -251,18 +251,16 @@
       <h4 class="header">贡献榜</h4>
       <ol class="contribution-box">
         <?php for($i = 0;$i<5;$i++){ ?>
-            <?php if($user_arr[$i]['contribution']<=0) : ?>
-              <?php break;?>
-            <?php else: ?>
+          <?php if($user_arr[$i]['contribution']<=0) : ?>
+            <?php break;?>
+          <?php else: ?>
             <li class="contribution">
               <span><?php echo $user_arr[$i]['username']; ?></span>
               <span><?php echo $user_arr[$i]['contribution'];?></span>
             </li>
-            <?php endif;?>
-          
+          <?php endif;?>
         <?php }?>
           
-
           <div class="contribution">
             <a href="#">如何提升贡献值</a>
           </div>
