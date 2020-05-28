@@ -35,7 +35,6 @@
 
     $row_user = $result_user->fetch_assoc();
     $row['username'] = $row_user['username'];
-    //array_push($row, $row_user['username']);
 
     // use $row to access the content of the post directly
 
@@ -102,40 +101,12 @@
   </nav>
 
 
-    <form class="container-fluid" action="/posts.php" method="GET">
+    <form class="container-fluid" action="/post.php" method="GET">
         <div class="header-nav">
             <h3 class="title-box">
                 回国
             </h3>
-            
-            <div class="search-box">
-                <label for="search-input">搜索:</label>
-                <input type="text" class="search-input" id="search-input" placeholder="关键词">
-            </div>
 
-            <div class="sorting-box input-group">
-                <select name="sort_by" class="custom-select">
-                    <option> 排序方式</option>
-                    <option> 时间</option>
-                    <option> 贡献值</option>
-                  </select>
-            </div>
-
-            <input type="hidden" name="category" value="" />
-
-            <button class="btn btn-lg btn-primary confirm-button" type="submit" >确认</button>
-
-            
-
-            <div class="pagination-box">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">前一页</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">后一页</a></li>
-                </ul>
-            </div>
         </div>
 
         <div class="post-detail-container container-fluid">
@@ -177,9 +148,11 @@
                 <!-- Thumb-ups -->
                 <div class="post-detail-footer">
                     <div class="icon-container">
-                        <svg>
-                            <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
-                        </svg>
+                        <a href = "backend/post/post_click.php?post_id=<?php echo $post_id ?>&user_id=<?php echo $author_id ?>">
+                            <svg>
+                                <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
+                            </svg>
+                        </a>
                         <span id = "upvote"><?php echo $row['thumb_up']; ?></span>
                     </div>
                     
@@ -279,7 +252,7 @@
     </form>
 
 
-    <script src="./bundle.js"> </script>
+     <script src="./bundle.js"> </script>
   <!--   <script type="text/javascript">
         document.querySelector(".icon-container").onclick = function()
         {
