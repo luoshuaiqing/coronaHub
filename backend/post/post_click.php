@@ -18,7 +18,7 @@
     $result_check = $mysqli->query($sql_check);
 
    
-    if($result_check)
+    if($result_check->fetch_assoc())
     {
     	$error = "You have already clicked on this post!";
     	header("Location: ../../post_detail.php?id=" . $post_id . "&error=" . $error);
