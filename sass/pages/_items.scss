@@ -6,17 +6,17 @@
     
 
     .items-box-container {
-        height: calc(100vh - 3 * #{$height-nav-index});
+        // height: calc(100vh - 3 * #{$height-nav-index});
         min-height: 600px;
         display: flex;
         flex-wrap: wrap;
         overflow: hidden;
-
+        margin-bottom: 5rem;
 
 
         > * {
             // background-color: red;
-            height: 50%;
+            // height: 50%;
 
             .item-box--outer {
                 padding: 1rem 2rem;

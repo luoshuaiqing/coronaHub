@@ -185,7 +185,7 @@
             </div>
         </div>
 
-        <div class="items-box-container row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-3">
+        <div class="items-box-container row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2">
             <?php foreach($result_arr as $row) { ?>
                 <div>
                     <div class="item-box--outer">
