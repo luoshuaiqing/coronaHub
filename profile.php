@@ -192,6 +192,7 @@
                             <th scope="col">发布时间</th>
                             <th scope="col">阅览</th>
                             <th scope="col">贡献值</th>
+                            <th scope="col"> Action </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -221,6 +222,10 @@
                                     <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
                                 </svg>
                                 <?php echo $row_post["thumb_up"] ?>
+                            </td>
+
+                            <td class = "icon-container">
+                              <a href = "backend/post/post_delete.php?id=<?php echo $row_post['post_id'];?>"> 删除 </a>
                             </td>
                          
                           </tr>
