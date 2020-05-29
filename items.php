@@ -1,6 +1,19 @@
 <?php 
     require "backend/config/config.php";
 
+    // Gets current page's URL.
+    function currentUrl() {
+        $protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
+        $host     = $_SERVER['HTTP_HOST'];
+        $script   = $_SERVER['SCRIPT_NAME'];
+        // $params   = $_SERVER['QUERY_STRING'];
+        $current_params = $_GET;
+        unset($current_params['page']);
+        $params   = http_build_query($current_params);
+
+        return $protocol . '://' . $host . $script . '?' . $params;
+    }
+
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     if($mysqli->connect_errno)
     {
@@ -10,12 +23,23 @@
 
 
     $category = $_GET['category'];
-    if(!isset($_GET['sort_by']) || empty($_GET['sort_by'])) {
+    $keyword = $_GET['keyword'];
+    if (!isset($_GET['sort_by']) || empty($_GET['sort_by'])) {
       $sort_by = "";
+    } else {
+      $sort_by = $_GET['sort_by'];
+    }
+
+    if (!isset($_GET['page']) || empty($_GET['page'])) {
+      $page = 1;
+    } else {
+      $page = (int)$_GET['page'];
     }
     
-
-    $sql_prepared = "SELECT * FROM item WHERE category = ?;";
+    if(!isset($keyword) || empty($keyword)) {
+      $keyword = "";
+    }
+    $sql_prepared = "SELECT * FROM item WHERE category = ? AND name LIKE '%{$keyword}%';";
     $statement = $mysqli->prepare($sql_prepared);
     $statement->bind_param("s",$category);
 
@@ -49,6 +73,12 @@
         array_push($result_arr,$row);
     }
 
+
+    $max_page = (int)(count($result_arr) / 10) + 1;
+    if ($page > $max_page) {
+      $page = 1;
+    }
+
     // Sorts result array
     if ($sort_by == "time") {
       usort($result_arr, function($a, $b) {
@@ -71,6 +101,9 @@
         return $ac > $bc ? -1 : 1;
       });
     }
+
+    // Chooses items that belong to this page.
+    $result_arr = array_slice($result_arr, ($page-1)*10, 10);
 
     // can use $result_item to access all the items in a specific category (For post_item.html)
     
@@ -150,14 +183,14 @@
   </nav>
 
   
-    <form class="container-fluid" id="items-container" method="GET" action="#">
+    <form class="container-fluid" id="items-container" method="GET" action="items.php">
 
         <div class="header-nav">
             <h3 class="title-box"><?php echo $_GET['category']; ?></h3>
             
             <div class="search-box">
                 <label for="search-input">搜索:</label>
-                <input type="text" class="search-input" id="search-input" placeholder="关键词">
+                <input type="text" class="search-input" id="search-input" name="keyword" placeholder="关键词" value=<?php echo $keyword; ?>>
             </div>
 
             <div class="sorting-box input-group">
@@ -172,20 +205,25 @@
 
             <button class="btn btn-lg btn-primary confirm-button" type="submit" >确认</button>
 
-            
+            <script> console.log(<?php echo $max_page; ?>) </script>
 
             <div class="pagination-box">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">前一页</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">后一页</a></li>
+                    <li class="page-item <?php if ($page == 1) echo "disabled"; ?>"><a class="page-link" href="<?php echo currentUrl().'&page='.($page-1); ?>">前一页</a></li>
+                    <li class="page-item active"><a class="page-link" href="<?php echo currentUrl().'&page='.($page); ?>"><?php echo $page ?></a></li>
+                    <?php if ($page+1 <= $max_page) {?>
+                      <li class="page-item"><a class="page-link" href="<?php echo currentUrl().'&page='.($page+1); ?>"><?php echo $page+1 ?></a></li>
+                    <?php } ?>
+                    <?php if ($page+2 <= $max_page) {?>
+                      <li class="page-item"><a class="page-link" href="<?php echo currentUrl().'&page='.($page+2); ?>"><?php echo $page+2 ?></a></li>
+                    <?php } ?>
+                    <li class="page-item <?php if ($page == $max_page) echo "disabled"; ?>"><a class="page-link" href="<?php echo currentUrl().'&page='.($page+1); ?>">后一页</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="items-box-container row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2">
+            <script> console.log("counting <?php echo count($result_arr); ?>") </script>
             <?php foreach($result_arr as $row) { ?>
                 <div>
                     <div class="item-box--outer">

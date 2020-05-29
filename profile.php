@@ -97,12 +97,12 @@
      <h6><a href="items.php?category=necessity">日常用品</a></h6>
       <img src="assets/nav-necessity.png" alt="necessity img">
     </div>
-    <div class="header-box">
-      <h6>回国</h6>
+   <div class="header-box">
+      <h6><a href = "posts.php?category=back">回国</a></h6>
       <img src="assets/nav-back.png" alt="back img">
     </div>
     <div class="header-box">
-      <h6>留守</h6>
+      <h6><a href = "posts.php?category=stay">留守</a></h6>
       <img src="assets/nav-stay.png" alt="stay img">
     </div>
   </nav>
@@ -171,9 +171,10 @@
                             <div class="img-box">
                                 <img src="<?php echo $row_item['path1']; ?>" alt="mask img">
                                 <div>商品名称:<?php echo $row_item["name"] ?></div>
-                                <div>数量:<?php echo $row_item["amount"] ?></div>
-                                <div>类别：<?php echo $row_item["category"] ?></div>>
-                                <div><a href="#">修改</a></div>
+                                  <div>数量:<?php echo $row_item["amount"] ?></div>
+                                  <div>类别：<?php echo $row_item["category"] ?></div>>
+                                 <div><a href="/backend/item/item_edit.php? id=<?php echo $row_item["item_id"]; ?>">修改</a></div>
+
                             </div>
                            <?php endwhile; ?>
                         </div>
@@ -191,6 +192,7 @@
                             <th scope="col">发布时间</th>
                             <th scope="col">阅览</th>
                             <th scope="col">贡献值</th>
+                            <th scope="col"> Action </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -203,7 +205,7 @@
                             </td>
                             <td>
                                 <svg class="edit">
-                                    <use xlink:href="/assets/sprite.svg#icon-edit-3"></use>
+                                    <a href="edit_post.php?id=<?php echo $row_post["post_id"]; ?>"> <use xlink:href="/assets/sprite.svg#icon-edit-3"></use></a>
                                 </svg>
                             </td>
                             <td>
@@ -220,6 +222,10 @@
                                     <use xlink:href="/assets/sprite.svg#icon-thumbs-up"></use>
                                 </svg>
                                 <?php echo $row_post["thumb_up"] ?>
+                            </td>
+
+                            <td class = "icon-container">
+                              <a href = "backend/post/post_delete.php?id=<?php echo $row_post['post_id'];?>"> 删除 </a>
                             </td>
                          
                           </tr>
