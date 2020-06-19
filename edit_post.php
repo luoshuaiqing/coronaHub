@@ -113,7 +113,9 @@
         <div class="add-post-form upload-form__content">
             <div class="post-title-box">
                 <span class="title"> 标题</span>
-                <div class="content"><input type="text" class="post-title-input" name="headline" value=<?php echo $row_post["headline"]; ?>></div>
+                <div class="content">
+                  <input type="text" class="post-title-input" name="headline" value="<?php echo $row_post["headline"]; ?>">
+                </div>
             </div>
             
             <div class="post-category-box">
